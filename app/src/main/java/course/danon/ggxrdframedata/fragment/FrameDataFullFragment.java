@@ -97,9 +97,9 @@ public class FrameDataFullFragment extends Fragment {
                 frameData.addView(inflaterView);
                 evenRow = !evenRow;
             }
-
-            Log.d(TABLE_LOG, "FDFullOnCreateView End");
             Base.close();
+            
+            Log.d(TABLE_LOG, "FDFullOnCreateView End");
 //        Debug.stopMethodTracing();
 
             return frameDataView;
