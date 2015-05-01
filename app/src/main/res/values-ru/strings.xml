@@ -47,8 +47,8 @@
         <a href="http://www.fighting.ru/forum/viewtopic.php?f=14&amp;t=8861">Тема на Fighting.ru</a> (Русский)\n</string>
     <string name="backdash_inv">Инвул бэкдеша:</string>
     <string name="backdash_time">Время бэкдеша:</string>
-    <string name="defense_mod">Множитель защиты:</string>
-    <string name="ik_activation">Активация IK:</string>
+    <string name="defense_mod">Защита:</string>
+    <string name="ik_activation">Вход в IK:</string>
     <string name="jump">Стартап прыжка:</string>
     <string name="stun">Стойкость к оглушению:</string>
     <string name="guts">Уровень Guts:</string>
