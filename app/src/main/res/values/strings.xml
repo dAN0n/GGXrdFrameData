@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="version" translatable="false">0.8.2</string>
+    <string name="app_name" translatable="false">Guilty Gear Xrd Frame Data</string>
+    <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v0.8.2</string>
+    <string name="about_message">\n Project by Zobkov Dmitry aka d@N0n\n
+        <a href="http://www.dustloop.com/">Source of frame data information</a>\n
+        All images are from the <a href="http://www.ggxrd.com/">official game website</a>\n</string>
+    <string name="help_title">Help</string>
+    <string name="help_message">\n You can rotate the device to landscape view to display the full data
+        or portrait view to show a lite table with character image and additional information\n\n
+        Input - Input for performing move\n
+        Damage - Damage from move\n
+        Tension - Special meter gain (Max 10000)\n
+        RISC - Determines opponent R.I.S.C meter gain from blocking this move\n
+        Prorate - Damage scaling\n
+        Attack Level - Determines the hitstun and blockstun\n
+        Guard - How this move has to be blocked\n
+        Cancel - S - special, J - jump, C - to the same move\n
+        RC - Types of Roman Cancel\n
+        Startup - Frames on start move without taking damage\n
+        Active - Frames that taking damage\n
+        Recovery - Frames of recovery to neutral position\n
+        Frame Advantage - Advantage on blocking this move\n
+        Invul. - Invincibility\n
+        For more information look these websites:\n
+        <a href="http://www.dustloop.com/wiki/index.php?title=Guilty_Gear_Xrd_-SIGN-">Dustloop Wiki</a> (English)\n\n
+        <a href="http://wiki.4gamer.net/ggxrd/">Official Wiki</a> (Japanese)\n\n
+        <a href="http://www.fighting.ru/forum/viewtopic.php?f=14&amp;t=8861">Thread on Fighting.ru</a> (Russian)\n</string>
+    <string name="close_button">Close</string>
+    <string name="app_name_short" translatable="false">GGXrd Frame Data</string>
+    <string name="char_select">Character Select</string>
+    <string name="action_help">About</string>
+    <string name="title_activity_character_frame_data" translatable="false">CharacterFrameDataActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input">Input</string>
+    <string name="damage">Dmg</string>
+    <string name="tension">Tension</string>
+    <string name="risc" translatable="false">RISC</string>
+    <string name="prorate" translatable="false">Prorate</string>
+    <string name="attacklv">Attack Lv.</string>
+    <string name="guard">Guard</string>
+    <string name="cancel">Cancel</string>
+    <string name="rc" translatable="false">RC</string>
+    <string name="startup">Startup</string>
+    <string name="active">Active</string>
+    <string name="recovery">Recovery</string>
+    <string name="advantage">Advantage</string>
+    <string name="adv">Adv</string>
+    <string name="inv">Invul.</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="char_pic">CharPic</string>
+    <string name="defense_mod">Defense Modifier:</string>
+    <string name="guts">Guts Rating:</string>
+    <string name="stun">Stun Resistance:</string>
+    <string name="jump">Jump Startup:</string>
+    <string name="backdash_time">Backdash Time:</string>
+    <string name="backdash_inv">Backdash Invincibility:</string>
+    <string name="ik_activation">IK Activation:</string>
+
+</resources>

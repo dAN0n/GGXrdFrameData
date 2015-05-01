@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_message">\n Проект выполнил Дмитрий d@N0n Зобков\n
+        <a href="http://www.dustloop.com/">Ссылка на источник фреймдаты</a>\n
+        Использованы изображения с <a href="http://www.ggxrd.com/">официального сайта игры</a>\n
+    </string>
+    <string name="action_help">О приложении</string>
+    <string name="active">Активы</string>
+    <string name="adv">Минус</string>
+    <string name="advantage">Минус на блоке</string>
+    <string name="char_select">Выбор персонажа</string>
+    <string name="attacklv">Ур. атаки</string>
+    <string name="cancel">Отмена</string>
+    <string name="char_pic">ЧарПик</string>
+    <string name="close_button">Закрыть</string>
+    <string name="damage">Урон</string>
+    <string name="drawer_close">Закрыть полку</string>
+    <string name="drawer_open">Открыть полку</string>
+    <string name="guard">Блок</string>
+    <string name="hello_world">Привет мир!</string>
+    <string name="help_title">Помощь</string>
+    <string name="input">Удар</string>
+    <string name="inv">Инвул</string>
+    <string name="recovery">Восст</string>
+    <string name="startup">Стартап</string>
+    <string name="tension">Метр</string>
+    <string name="help_message">\n Портретный режим - Упрощенная фреймдата с изображением персонажа
+        и дополнительной информацией\n
+        Ландшафтный режим - Полная фреймдата\n\n
+        Удар - Ввод приёма\n
+        Урон - Урон на хите\n
+        Метр - Заполнение полоски Tension (Макс. 10000)\n
+        RISC - Заполнение R.I.S.C метра после блока удара\n
+        Prorate - Уменьшение нормального урона\n
+        Ур. атаки - Определяет хитстан и блокстан\n
+        Блок - Как блокировать удар\n
+        Отмена - S - в спешал, J - в прыжок, C - сам в себя\n
+        RC - Типы Roman Cancel\n
+        Стартап - Начальные кадры удара без урона\n
+        Активы - Кадры, наносящие урон\n
+        Восстановление - Кадры возвращения в нейтральную позицию\n
+        Минус на блоке - Преимущество на блоке удара\n
+        Инвул - Кадры неуязвимости\n
+        Для дополнительной информации посетите:\n
+        <a href="http://www.dustloop.com/wiki/index.php?title=Guilty_Gear_Xrd_-SIGN-">Dustloop Вики</a> (Английский)\n\n
+        <a href="http://wiki.4gamer.net/ggxrd/">Официальная Вики</a> (Японский)\n\n
+        <a href="http://www.fighting.ru/forum/viewtopic.php?f=14&amp;t=8861">Тема на Fighting.ru</a> (Русский)\n</string>
+    <string name="backdash_inv">Инвул бэкдеша:</string>
+    <string name="backdash_time">Время бэкдеша:</string>
+    <string name="defense_mod">Множитель защиты:</string>
+    <string name="ik_activation">Активация IK:</string>
+    <string name="jump">Стартап прыжка:</string>
+    <string name="stun">Стойкость к оглушению:</string>
+    <string name="guts">Уровень Guts:</string>
+</resources>
