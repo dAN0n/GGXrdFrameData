@@ -57,6 +57,7 @@ public class FrameDataFragment extends Fragment{
                 frameData.addView(inflaterView);
                 evenRow = !evenRow;
             }
+            Base.close();
 
             LayoutInflater Inflater = getActivity().getLayoutInflater();
             View inflaterView = Inflater.inflate(R.layout.table_row, frameData, false);
@@ -71,7 +72,6 @@ public class FrameDataFragment extends Fragment{
             Adv.setBackgroundColor(getResources().getColor(R.color.light_row_color));
 
             frameData.addView(inflaterView, 0);
-            Base.close();
             Log.d(TABLE_LOG, "FDOnCreateView End");
 //        Debug.stopMethodTracing();
 

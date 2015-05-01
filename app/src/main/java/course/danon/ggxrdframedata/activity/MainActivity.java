@@ -45,24 +45,24 @@ public class MainActivity extends ActionBarActivity {
             Char[i] = c.getString(c.getColumnIndexOrThrow(Selection));
             i++;
         }
+        Base.close();
 
         ListView ListView = (ListView)findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.main_activity_list_view_item, Char);
         ListView.setAdapter(adapter);
 
-        ListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
                 String msg2 = String.valueOf(id);
-                String CharId = String.valueOf(id+1);
+                String CharId = String.valueOf(id + 1);
                 Log.d(LOG_TAG, msg2);
                 intent.putExtra("CharId", CharId);
                 intent.putExtra("CharList", Char);
                 startActivity(intent);
             }
         });
-        Base.close();
     }
 
 

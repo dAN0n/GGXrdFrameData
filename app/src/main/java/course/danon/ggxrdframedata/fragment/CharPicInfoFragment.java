@@ -45,12 +45,12 @@ public class CharPicInfoFragment extends Fragment {
                 charInfo[6] = getString(R.string.ik_activation) + " " + c.getString(c.getColumnIndexOrThrow("IK Activation"));
                 CharPic = c.getString(c.getColumnIndexOrThrow("Icon"));
             }
+            Base.close();
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.char_info_list_view, charInfo);
             infoList.setAdapter(adapter);
 
             charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable", getActivity().getPackageName()));
-            Base.close();
             Log.d(TABLE_LOG, "CharPicOnCreateView End");
 //        Debug.stopMethodTracing();
 
@@ -65,5 +65,4 @@ public class CharPicInfoFragment extends Fragment {
         fragment.setArguments(bundle);
         return fragment;
     }
-
 }

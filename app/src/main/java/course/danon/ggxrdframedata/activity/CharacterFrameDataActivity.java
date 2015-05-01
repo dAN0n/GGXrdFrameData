@@ -33,7 +33,6 @@ import course.danon.ggxrdframedata.fragment.FrameDataFragment;
 import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
 
-//TODO Почистить мусор с комментов
 //TODO Переделать TableLayout в GridView
 
 public class CharacterFrameDataActivity extends ActionBarActivity {
@@ -62,7 +61,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         setContentView(R.layout.character_frame_data);
 
         final String TABLE_LOG = "Fill_log";
-        Log.d(TABLE_LOG, CharId);
+        Log.d(TABLE_LOG, "Id: " + CharId);
         Log.d(TABLE_LOG, "ContentView Set");
         Base = new DataBaseHelper(this);
 
@@ -109,6 +108,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Name = (TextView)findViewById(R.id.CharNameLabel);
         Name.setText(CharName);
         setTitle(CharName);
+        Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
@@ -127,7 +127,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 
             Log.d(TABLE_LOG, "CharName Set Land");
         }
-        Base.close();
 //        Debug.stopMethodTracing();
     }
 
@@ -163,12 +162,13 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         String Id = Integer.toString(position+1);
         FragmentManager fragmentManager = getFragmentManager();
         Cursor c = Base.getCharInfo(Id);
-        String CharName = null;
         String CharTableName = null;
         while (c.moveToNext()) {
             CharName = c.getString(c.getColumnIndexOrThrow("Char"));
             CharTableName = c.getString(c.getColumnIndexOrThrow("FDTableName"));
         }
+        Base.close();
+
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
             fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
