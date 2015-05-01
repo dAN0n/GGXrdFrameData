@@ -162,7 +162,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         String Id = Integer.toString(position+1);
         FragmentManager fragmentManager = getFragmentManager();
         Cursor c = Base.getCharInfo(Id);
-        String CharName = null;
         String CharTableName = null;
         while (c.moveToNext()) {
             CharName = c.getString(c.getColumnIndexOrThrow("Char"));
