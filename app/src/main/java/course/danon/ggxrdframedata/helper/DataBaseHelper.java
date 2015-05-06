@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 public class DataBaseHelper extends SQLiteAssetHelper {
     private static final String DATABASE_NAME = "ggxrdfd.db";
@@ -21,8 +22,7 @@ public class DataBaseHelper extends SQLiteAssetHelper {
     
     public int getRowCount(String TableName){
         open();
-        String Selection = "Max(_id)";
-        Cursor c = db.query(TableName, new String[] {Selection}, null, null, null, null, null);
+        Cursor c = db.query(TableName, new String[] {KEY_MAX_ID}, null, null, null, null, null);
         c.moveToFirst();
         return c.getInt(0);
     }
@@ -34,33 +34,74 @@ public class DataBaseHelper extends SQLiteAssetHelper {
 
     public Cursor getPortraitTable(String TableName){
         open();
-        String Selection[] = new String[]{"_id", "Input", "Guard", "Startup", "`Frame Adv.` as Adv", "Type"};
+        String Selection[] = new String[]{
+            KEY_ID,
+            KEY_INPUT,
+            KEY_GUARD,
+            KEY_STARTUP,
+            KEY_FRAME_ADV,
+            KEY_TYPE};
         return db.query(TableName, Selection, null, null, null, null, null);
     }
 
     public Cursor getLandscapeTable(String TableName){
         open();
-        String Selection[] = new String[]{"_id", "Input", "Damage", "Tension", "RISC", "Prorate", "`Attack Lv.` as Attack",
-            "Guard", "Cancel", "RC", "Startup", "Active", "Recovery", "`Frame Adv.` as Adv", "`Inv.` as Inv", "Type"};
+        String Selection[] = new String[]{
+            KEY_ID,
+            KEY_INPUT,
+            KEY_DAMAGE,
+            KEY_TENSION,
+            KEY_RISC,
+            KEY_PRORATE,
+            KEY_ATTACK_LV,
+            KEY_GUARD,
+            KEY_CANCEL,
+            KEY_RC,
+            KEY_STARTUP,
+            KEY_ACTIVE,
+            KEY_RECOVERY,
+            KEY_FRAME_ADV,
+            KEY_INVUL,
+            KEY_TYPE};
         return db.query(TableName, Selection, null, null, null, null, null);
     }
 
 /*    public Cursor getRow(String TableName, String id){
         open();
-        String Selection[] = new String[]{"Input", "Damage", "Tension", "RISC", "Prorate", "`Attack Lv.` as Attack",
-            "Guard", "Cancel", "RC", "Startup", "Active", "Recovery", "`Frame Adv.` as Adv", "`Inv.` as Inv", "Type"};
-        String Where = "_id = ?";
-        Cursor c = db.query(TableName, Selection, Where, new String[]{id}, null, null, null);
-        return c;
+        String Selection[] = new String[]{
+                    KEY_ID,
+                    KEY_INPUT,
+                    KEY_DAMAGE,
+                    KEY_TENSION,
+                    KEY_RISC,
+                    KEY_PRORATE,
+                    KEY_ATTACK_LV,
+                    KEY_GUARD,
+                    KEY_CANCEL,
+                    KEY_RC,
+                    KEY_STARTUP,
+                    KEY_ACTIVE,
+                    KEY_RECOVERY,
+                    KEY_FRAME_ADV,
+                    KEY_INVUL,
+                    KEY_TYPE};
+        return db.query(TableName, Selection, KEY_WHERE_ID_QUESTION, new String[]{id}, null, null, null);
     }*/
 
     public Cursor getCharInfo(String id){
         open();
-        String TableName = "CharSelectIcons";
-        String[] Selection = new String[]{"Char", "FDTableName", "Icon", "`Defense Modifier`", "`Guts Rating`",
-            "`Stun Resistance`", "`Jump Startup`", "`Backdash Time`", "`Backdash Invincibility`", "`IK Activation`"};
-        String Where = "_id = ?";
-        return db.query(TableName, Selection, Where, new String[]{id}, null, null, null);
+        String[] Selection = new String[]{
+            KEY_CHAR,
+            KEY_TABLENAME,
+            KEY_ICON,
+            KEY_DEFENSE_MODIF,
+            KEY_GUTS_RATING,
+            KEY_STUN_RESIST,
+            KEY_JUMP_STARTUP,
+            KEY_BACKDASH_TIME,
+            KEY_BACKDASH_INV,
+            KEY_IK_ACTIV};
+        return db.query(KEY_CHAR_SELECT, Selection, KEY_WHERE_ID_QUESTION, new String[]{id}, null, null, null);
     }
 
     public void close(){

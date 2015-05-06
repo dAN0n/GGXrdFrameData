@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 public class FrameDataFragment extends Fragment{
+    private final static String TABLE_NAME = "TableName";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -24,10 +26,9 @@ public class FrameDataFragment extends Fragment{
             TableLayout frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
 
 //            Debug.startMethodTracing("FDOnActivityCreated");
-            final String TABLE_LOG = "Fill_log";
             Log.d(TABLE_LOG, "FDOnCreateView");
             DataBaseHelper Base = new DataBaseHelper(getActivity());
-            String tableName = getArguments().getString("TableName");
+            String tableName = getArguments().getString(TABLE_NAME);
             Cursor c = Base.getPortraitTable(tableName);
             boolean evenRow = true;
             while (c.moveToNext()) {
@@ -49,10 +50,10 @@ public class FrameDataFragment extends Fragment{
                     Startup.setBackgroundColor(getResources().getColor(R.color.light_row_color));
                     Adv.setBackgroundColor(getResources().getColor(R.color.light_row_color));
                 }
-                Input.setText(c.getString(c.getColumnIndexOrThrow("Input")));
-                Guard.setText(c.getString(c.getColumnIndexOrThrow("Guard")));
-                Startup.setText(c.getString(c.getColumnIndexOrThrow("Startup")));
-                Adv.setText(c.getString(c.getColumnIndexOrThrow("Adv")));
+                Input.setText(c.getString(c.getColumnIndexOrThrow(KEY_INPUT)));
+                Guard.setText(c.getString(c.getColumnIndexOrThrow(KEY_GUARD)));
+                Startup.setText(c.getString(c.getColumnIndexOrThrow(KEY_STARTUP)));
+                Adv.setText(c.getString(c.getColumnIndexOrThrow(KEY_ADV)));
 
                 frameData.addView(inflaterView);
                 evenRow = !evenRow;
@@ -82,7 +83,7 @@ public class FrameDataFragment extends Fragment{
     public static FrameDataFragment newInstance(String TableName){
         FrameDataFragment fragment = new FrameDataFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("TableName", TableName);
+        bundle.putString(TABLE_NAME, TableName);
         fragment.setArguments(bundle);
         return fragment;
     }

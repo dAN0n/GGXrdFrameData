@@ -13,9 +13,11 @@ import android.widget.ListView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 
 public class CharPicInfoFragment extends Fragment {
+    private final static String ID = "ID";
 
     private String CharPic;
 
@@ -33,16 +35,16 @@ public class CharPicInfoFragment extends Fragment {
 //        Debug.startMethodTracing("CharPicOnActivityCreated");
             DataBaseHelper Base = new DataBaseHelper(getActivity());
             String[] charInfo = new String[7];
-            String CharId = this.getArguments().getString("ID");
+            String CharId = this.getArguments().getString(ID);
             Cursor c = Base.getCharInfo(CharId);
             while (c.moveToNext()) {
-                charInfo[0] = getString(R.string.defense_mod) + " " + c.getString(c.getColumnIndexOrThrow("Defense Modifier"));
-                charInfo[1] = getString(R.string.guts) + " " + c.getString(c.getColumnIndexOrThrow("Guts Rating"));
-                charInfo[2] = getString(R.string.stun) + " " + c.getString(c.getColumnIndexOrThrow("Stun Resistance"));
-                charInfo[3] = getString(R.string.jump) + " " + c.getString(c.getColumnIndexOrThrow("Jump Startup"));
-                charInfo[4] = getString(R.string.backdash_time) + " " + c.getString(c.getColumnIndexOrThrow("Backdash Time"));
-                charInfo[5] = getString(R.string.backdash_inv) + " " + c.getString(c.getColumnIndexOrThrow("Backdash Invincibility"));
-                charInfo[6] = getString(R.string.ik_activation) + " " + c.getString(c.getColumnIndexOrThrow("IK Activation"));
+                charInfo[0] = getString(R.string.defense_mod) + " " + c.getString(c.getColumnIndexOrThrow(KEY_DEFENSE));
+                charInfo[1] = getString(R.string.guts) + " " + c.getString(c.getColumnIndexOrThrow(KEY_GUTS));
+                charInfo[2] = getString(R.string.stun) + " " + c.getString(c.getColumnIndexOrThrow(KEY_STUN));
+                charInfo[3] = getString(R.string.jump) + " " + c.getString(c.getColumnIndexOrThrow(KEY_JUMP));
+                charInfo[4] = getString(R.string.backdash_time) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_TIME));
+                charInfo[5] = getString(R.string.backdash_inv) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_INV));
+                charInfo[6] = getString(R.string.ik_activation) + " " + c.getString(c.getColumnIndexOrThrow(KEY_IK));
                 CharPic = c.getString(c.getColumnIndexOrThrow("Icon"));
             }
             Base.close();
@@ -61,7 +63,7 @@ public class CharPicInfoFragment extends Fragment {
     public static CharPicInfoFragment newInstance(String CharId){
         CharPicInfoFragment fragment = new CharPicInfoFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("ID", CharId);
+        bundle.putString(ID, CharId);
         fragment.setArguments(bundle);
         return fragment;
     }

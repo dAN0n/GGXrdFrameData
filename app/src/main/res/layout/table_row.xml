@@ -13,7 +13,8 @@
         android:layout_weight="1"
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
-        android:paddingRight="1dp"/>
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="0dp"
@@ -24,7 +25,8 @@
         android:layout_weight="1"
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
-        android:paddingRight="1dp"/>
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="0dp"
@@ -35,7 +37,8 @@
         android:layout_weight="1"
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
-        android:paddingRight="1dp"/>
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="0dp"
@@ -46,6 +49,7 @@
         android:layout_weight="1"
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
-        android:paddingRight="1dp"/>
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"/>
 
 </TableRow>

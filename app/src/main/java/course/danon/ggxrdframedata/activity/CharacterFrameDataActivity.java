@@ -32,16 +32,24 @@ import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.fragment.FrameDataFragment;
 import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-//TODO Переделать TableLayout в GridView
+//TODO Потестировать typeFace monospace
+//TODO Подумать над цветами таблицы
+//TODO Прикрутить-таки Loader
+//TODO Разобраться с profiler и hierarchyviewer для отчёта
 
 public class CharacterFrameDataActivity extends ActionBarActivity {
+    final String DRAWER_IMAGE = "DrawerImage";
+    final String DRAWER_TEXT = "DrawerText";
+
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private String CharName;
+
     private DataBaseHelper Base;
     private TextView Name;
+    private String CharName;
     private String CharId;
 
     @Override
@@ -52,15 +60,14 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
-        String[] charList = intent.getStringArrayExtra("CharList");
+        String[] charList = intent.getStringArrayExtra(CHAR_LIST);
         if(savedInstanceState == null) {
-            CharId = intent.getStringExtra("CharId");
+            CharId = intent.getStringExtra(CHAR_ID);
         }
-        else CharId = savedInstanceState.getString("CharId");
+        else CharId = savedInstanceState.getString(CHAR_ID);
 
         setContentView(R.layout.character_frame_data);
 
-        final String TABLE_LOG = "Fill_log";
         Log.d(TABLE_LOG, "Id: " + CharId);
         Log.d(TABLE_LOG, "ContentView Set");
         Base = new DataBaseHelper(this);
@@ -71,23 +78,23 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 //        mActivityTitle = getTitle().toString();
 
-        Cursor c = Base.getColumn("CharSelectIcons", "Icon");
+        Cursor c = Base.getColumn(KEY_CHAR_SELECT, KEY_ICON);
         String[] charIcons = new String[charList.length];
         int i = 0;
         while(c.moveToNext()){
-            charIcons[i] = c.getString(c.getColumnIndexOrThrow("Icon"))+"_icon";
+            charIcons[i] = c.getString(c.getColumnIndexOrThrow(KEY_ICON))+"_icon";
             i++;
         }
 
         List<HashMap<String,String>> aList = new ArrayList<>();
         for(i=0; i< charList.length; i++){
             HashMap<String, String> hm = new HashMap<>();
-            hm.put("DrawerImage", Integer.toString(getResources().getIdentifier(charIcons[i], "drawable", getPackageName())));
-            hm.put("DrawerText", charList[i]);
+            hm.put(DRAWER_IMAGE, Integer.toString(getResources().getIdentifier(charIcons[i], "drawable", getPackageName())));
+            hm.put(DRAWER_TEXT, charList[i]);
             aList.add(hm);
         }
 
-        String[] from = { "DrawerImage","DrawerText" };
+        String[] from = { DRAWER_IMAGE, DRAWER_TEXT };
         int[] to = { R.id.DrawerImage,R.id.DrawerText };
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.drawer_list_item, from, to);
         mDrawerList.setAdapter(adapter);
@@ -101,8 +108,8 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         c = Base.getCharInfo(CharId);
         Log.d(TABLE_LOG, "CharInfo Filling");
         while (c.moveToNext()) {
-            CharName = c.getString(c.getColumnIndexOrThrow("Char"));
-            CharTableName = c.getString(c.getColumnIndexOrThrow("FDTableName"));
+            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
+            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
         }
 
         Name = (TextView)findViewById(R.id.CharNameLabel);
@@ -164,8 +171,8 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Cursor c = Base.getCharInfo(Id);
         String CharTableName = null;
         while (c.moveToNext()) {
-            CharName = c.getString(c.getColumnIndexOrThrow("Char"));
-            CharTableName = c.getString(c.getColumnIndexOrThrow("FDTableName"));
+            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
+            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
         }
         Base.close();
 
@@ -203,7 +210,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("CharId", CharId);
+        outState.putString(CHAR_ID, CharId);
     }
 
     @Override

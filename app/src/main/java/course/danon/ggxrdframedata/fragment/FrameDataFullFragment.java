@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 
 public class FrameDataFullFragment extends Fragment {
+    private final static String TABLE_NAME = "TableName";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -24,10 +26,9 @@ public class FrameDataFullFragment extends Fragment {
             TableLayout frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
 
 //            Debug.startMethodTracing("FDFullOnActivityCreated");
-            final String TABLE_LOG = "Fill_log";
             Log.d(TABLE_LOG, "FDFullOnCreateView");
             DataBaseHelper Base = new DataBaseHelper(getActivity());
-            String tableName = getArguments().getString("TableName");
+            String tableName = getArguments().getString(TABLE_NAME);
             Cursor c = Base.getLandscapeTable(tableName);
             boolean evenRow = true;
             while (c.moveToNext()) {
@@ -79,20 +80,20 @@ public class FrameDataFullFragment extends Fragment {
                     Adv.setBackgroundColor(getResources().getColor(R.color.light_row_color));
                     Inv.setBackgroundColor(getResources().getColor(R.color.light_row_color));
                 }
-                Input.setText(c.getString(c.getColumnIndexOrThrow("Input")));
-                Damage.setText(c.getString(c.getColumnIndexOrThrow("Damage")));
-                Tension.setText(c.getString(c.getColumnIndexOrThrow("Tension")));
-                Risc.setText(c.getString(c.getColumnIndexOrThrow("RISC")));
-                Prorate.setText(c.getString(c.getColumnIndexOrThrow("Prorate")));
-                Attack.setText(c.getString(c.getColumnIndexOrThrow("Attack")));
-                Guard.setText(c.getString(c.getColumnIndexOrThrow("Guard")));
-                Cancel.setText(c.getString(c.getColumnIndexOrThrow("Cancel")));
-                Rc.setText(c.getString(c.getColumnIndexOrThrow("RC")));
-                Startup.setText(c.getString(c.getColumnIndexOrThrow("Startup")));
-                Active.setText(c.getString(c.getColumnIndexOrThrow("Active")));
-                Recovery.setText(c.getString(c.getColumnIndexOrThrow("Recovery")));
-                Adv.setText(c.getString(c.getColumnIndexOrThrow("Adv")));
-                Inv.setText(c.getString(c.getColumnIndexOrThrow("Inv")));
+                Input.setText(c.getString(c.getColumnIndexOrThrow(KEY_INPUT)));
+                Damage.setText(c.getString(c.getColumnIndexOrThrow(KEY_DAMAGE)));
+                Tension.setText(c.getString(c.getColumnIndexOrThrow(KEY_TENSION)));
+                Risc.setText(c.getString(c.getColumnIndexOrThrow(KEY_RISC)));
+                Prorate.setText(c.getString(c.getColumnIndexOrThrow(KEY_PRORATE)));
+                Attack.setText(c.getString(c.getColumnIndexOrThrow(KEY_ATTACK)));
+                Guard.setText(c.getString(c.getColumnIndexOrThrow(KEY_GUARD)));
+                Cancel.setText(c.getString(c.getColumnIndexOrThrow(KEY_CANCEL)));
+                Rc.setText(c.getString(c.getColumnIndexOrThrow(KEY_RC)));
+                Startup.setText(c.getString(c.getColumnIndexOrThrow(KEY_STARTUP)));
+                Active.setText(c.getString(c.getColumnIndexOrThrow(KEY_ACTIVE)));
+                Recovery.setText(c.getString(c.getColumnIndexOrThrow(KEY_RECOVERY)));
+                Adv.setText(c.getString(c.getColumnIndexOrThrow(KEY_ADV)));
+                Inv.setText(c.getString(c.getColumnIndexOrThrow(KEY_INV)));
 
                 frameData.addView(inflaterView);
                 evenRow = !evenRow;
@@ -109,7 +110,7 @@ public class FrameDataFullFragment extends Fragment {
     public static FrameDataFullFragment newInstance(String TableName){
         FrameDataFullFragment fragment = new FrameDataFullFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("TableName", TableName);
+        bundle.putString(TABLE_NAME, TableName);
 //        bundle.putStringArray("CharInfo", charInfo);
         fragment.setArguments(bundle);
         return fragment;
