@@ -15,6 +15,11 @@ import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
+/**
+ * Fragment with lite frame data table
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 2.0
+ */
 public class FrameDataFragment extends Fragment{
     private final static String TABLE_NAME = "TableName";
 
@@ -80,6 +85,11 @@ public class FrameDataFragment extends Fragment{
         }
     }
 
+    /**
+     * This method puts name of character frame data table in fragment
+     * @param TableName Name of character frame data table in database
+     * @return fragment with bundle
+     */
     public static FrameDataFragment newInstance(String TableName){
         FrameDataFragment fragment = new FrameDataFragment();
         Bundle bundle = new Bundle();

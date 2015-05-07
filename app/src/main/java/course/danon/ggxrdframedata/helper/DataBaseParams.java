@@ -1,5 +1,10 @@
 package course.danon.ggxrdframedata.helper;
 
+/**
+ * Class with constant parameters for working with DataBaseHelper class
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 1.0
+ */
 public final class DataBaseParams {
     public static final String KEY_MAX_ID = "Max(_id)",
         KEY_ID = "_id",
@@ -29,7 +34,7 @@ public final class DataBaseParams {
         KEY_JUMP_STARTUP = "`Jump Startup`",
         KEY_BACKDASH_TIME = "`Backdash Time`",
         KEY_BACKDASH_INV = "`Backdash Invincibility`",
-        KEY_IK_ACTIV = "`IK Activation`";
+        KEY_IK_ACTIVATION = "`IK Activation`";
 
     public static final String KEY_ATTACK = "Attack",
         KEY_ADV = "Adv",
@@ -45,6 +50,9 @@ public final class DataBaseParams {
         CHAR_LIST = "CharList",
         CHAR_ID = "CharId";
 
+    /**
+     * Preventing from creating objects of class
+     */
     private DataBaseParams(){
         throw new AssertionError();
     }

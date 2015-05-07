@@ -21,7 +21,11 @@ import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-
+/**
+ * Main Menu activity with list of characters for selecting
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 1.5
+ */
 public class MainActivity extends ActionBarActivity {
 
     @Override

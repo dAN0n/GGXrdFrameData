@@ -15,7 +15,11 @@ import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-
+/**
+ * Fragment with picture of character and additional information
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 2.0
+ */
 public class CharPicInfoFragment extends Fragment {
     private final static String ID = "ID";
 
@@ -60,6 +64,11 @@ public class CharPicInfoFragment extends Fragment {
         }
     }
 
+    /**
+     * This method puts id of character in fragment
+     * @param CharId Id of character in database
+     * @return fragment with bundle
+     */
     public static CharPicInfoFragment newInstance(String CharId){
         CharPicInfoFragment fragment = new CharPicInfoFragment();
         Bundle bundle = new Bundle();

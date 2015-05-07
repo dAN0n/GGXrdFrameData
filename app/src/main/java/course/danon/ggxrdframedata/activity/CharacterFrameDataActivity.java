@@ -38,7 +38,13 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 //TODO Подумать над цветами таблицы
 //TODO Прикрутить-таки Loader
 //TODO Разобраться с profiler и hierarchyviewer для отчёта
+//TODO Доделать javaDoc и сгенерировать
 
+/**
+ * Activity with frame data of character
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 2.0
+ */
 public class CharacterFrameDataActivity extends ActionBarActivity {
     final String DRAWER_IMAGE = "DrawerImage";
     final String DRAWER_TEXT = "DrawerText";
@@ -137,6 +143,9 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 //        Debug.stopMethodTracing();
     }
 
+    /**
+     * Setup drawer element
+     */
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
             R.string.drawer_open, R.string.drawer_close) {
@@ -158,6 +167,9 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    /**
+     * Listener of clicks on drawer elements
+     */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -165,6 +177,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * Changing current character frame data to position character
+     * @param position Id of selected character in database
+     */
     private void selectItem(int position) {
         String Id = Integer.toString(position+1);
         FragmentManager fragmentManager = getFragmentManager();
@@ -207,6 +223,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Save information and character id on destroying
+     * @param outState SaveInstanceState bundle
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
