@@ -2,6 +2,8 @@ package course.danon.ggxrdframedata.fragment;
 
 
 import android.app.Fragment;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
+import course.danon.ggxrdframedata.loader.FrameDataLoader;
+
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 /**
@@ -20,10 +25,11 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
  * @author Zobkov Dmitry (d@N0n)
  * @version 2.0
  */
-public class FrameDataFragment extends Fragment{
+public class FrameDataFragment extends Fragment implements LoaderManager.LoaderCallbacks<View>{
     private final static String TABLE_NAME = "TableName";
+    private TableLayout frameData;
 
-    @Override
+/*    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(container == null) return null;
         else {
@@ -83,6 +89,57 @@ public class FrameDataFragment extends Fragment{
 
             return frameDataView;
         }
+    }*/
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if(container == null) return null;
+        else {
+            View frameDataView = inflater.inflate(R.layout.fragment_frame_data_table_layout, container, false);
+            frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
+
+            return frameDataView;
+        }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle bundle = new Bundle();
+//            Debug.startMethodTracing("FDOnActivityCreated");
+        final String TABLE_LOG = "Fill_log";
+        Log.d(TABLE_LOG, "FDOnCreateView");
+        DataBaseHelper Base = new DataBaseHelper(getActivity());
+        String tableName = getArguments().getString("TableName");
+        int MaxRow = Base.getRowCount(tableName);
+        Cursor c = Base.getPortraitTable(tableName);
+        int columncount = c.getColumnCount()-2;
+        int res = (columncount*MaxRow)+columncount;
+        String[] Fill = new String[columncount];
+        int i = 0;
+        Fill[i] = getResources().getString(R.string.input);
+        Fill[++i] = getResources().getString(R.string.guard);
+        Fill[++i] = getResources().getString(R.string.startup);
+        Fill[++i] = getResources().getString(R.string.advantage);
+        i=0;
+        int id = 0;
+        bundle.putStringArray(Integer.toString(id), Fill);
+        getLoaderManager().initLoader(0, bundle, this);
+
+        while (c.moveToNext()) {
+            Fill[i] = c.getString(c.getColumnIndexOrThrow("Input"));
+            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Guard"));
+            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Startup"));
+            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Adv"));
+            i=0;
+//            bundle.clear();
+            bundle.putStringArray(Integer.toString(++id), Fill);
+            getLoaderManager().initLoader(id, bundle, this);
+        }
+        Base.close();
+
+        Log.d(TABLE_LOG, "FDOnCreateView End");
+//        Debug.stopMethodTracing();
     }
 
     /**
@@ -98,4 +155,21 @@ public class FrameDataFragment extends Fragment{
         return fragment;
     }
 
+    @Override
+    public Loader<View> onCreateLoader(int id, Bundle args) {
+        LayoutInflater Inflater = getActivity().getLayoutInflater();
+        View inflaterView = Inflater.inflate(R.layout.table_row, frameData, false);
+        return new FrameDataLoader(getActivity(), args, false, inflaterView, id);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<View> loader, View data) {
+        frameData.addView(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<View> loader) {
+
+    }
 }
