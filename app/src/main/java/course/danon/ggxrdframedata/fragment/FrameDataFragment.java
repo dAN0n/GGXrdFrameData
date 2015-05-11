@@ -127,13 +127,14 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
         getLoaderManager().initLoader(0, bundle, this);
 
         while (c.moveToNext()) {
-            Fill[i] = c.getString(c.getColumnIndexOrThrow("Input"));
-            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Guard"));
-            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Startup"));
-            Fill[++i] = c.getString(c.getColumnIndexOrThrow("Adv"));
+            String[] FillNew = new String[columncount];
+            FillNew[i] = c.getString(c.getColumnIndexOrThrow("Input"));
+            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Guard"));
+            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Startup"));
+            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Adv"));
             i=0;
 //            bundle.clear();
-            bundle.putStringArray(Integer.toString(++id), Fill);
+            bundle.putStringArray(Integer.toString(++id), FillNew);
             getLoaderManager().initLoader(id, bundle, this);
         }
         Base.close();
@@ -165,7 +166,6 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onLoadFinished(Loader<View> loader, View data) {
         frameData.addView(data);
-
     }
 
     @Override
