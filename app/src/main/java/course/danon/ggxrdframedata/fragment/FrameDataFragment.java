@@ -97,51 +97,51 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_table_layout, container, false);
             frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
+            Bundle bundle = new Bundle();
+//            Debug.startMethodTracing("FDOnActivityCreated");
+            final String TABLE_LOG = "Fill_log";
+            Log.d(TABLE_LOG, "FDOnCreateView");
+            DataBaseHelper Base = new DataBaseHelper(getActivity());
+            String tableName = getArguments().getString("TableName");
+            int MaxRow = Base.getRowCount(tableName);
+            Cursor c = Base.getPortraitTable(tableName);
+            int columncount = c.getColumnCount()-2;
+            int res = (columncount*MaxRow)+columncount;
+            String[] Fill = new String[columncount];
+            int i = 0;
+            Fill[i] = getResources().getString(R.string.input);
+            Fill[++i] = getResources().getString(R.string.guard);
+            Fill[++i] = getResources().getString(R.string.startup);
+            Fill[++i] = getResources().getString(R.string.advantage);
+            i=0;
+            int id = 0;
+            bundle.putStringArray(Integer.toString(id), Fill);
+            getLoaderManager().initLoader(0, bundle, this);
 
+            while (c.moveToNext()) {
+                String[] FillNew = new String[columncount];
+                FillNew[i] = c.getString(c.getColumnIndexOrThrow("Input"));
+                FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Guard"));
+                FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Startup"));
+                FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Adv"));
+                i=0;
+//            bundle.clear();
+                bundle.putStringArray(Integer.toString(++id), FillNew);
+                getLoaderManager().initLoader(id, bundle, this);
+            }
+            Base.close();
+
+            Log.d(TABLE_LOG, "FDOnCreateView End");
+//        Debug.stopMethodTracing();
             return frameDataView;
         }
     }
 
-    @Override
+/*    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = new Bundle();
-//            Debug.startMethodTracing("FDOnActivityCreated");
-        final String TABLE_LOG = "Fill_log";
-        Log.d(TABLE_LOG, "FDOnCreateView");
-        DataBaseHelper Base = new DataBaseHelper(getActivity());
-        String tableName = getArguments().getString("TableName");
-        int MaxRow = Base.getRowCount(tableName);
-        Cursor c = Base.getPortraitTable(tableName);
-        int columncount = c.getColumnCount()-2;
-        int res = (columncount*MaxRow)+columncount;
-        String[] Fill = new String[columncount];
-        int i = 0;
-        Fill[i] = getResources().getString(R.string.input);
-        Fill[++i] = getResources().getString(R.string.guard);
-        Fill[++i] = getResources().getString(R.string.startup);
-        Fill[++i] = getResources().getString(R.string.advantage);
-        i=0;
-        int id = 0;
-        bundle.putStringArray(Integer.toString(id), Fill);
-        getLoaderManager().initLoader(0, bundle, this);
 
-        while (c.moveToNext()) {
-            String[] FillNew = new String[columncount];
-            FillNew[i] = c.getString(c.getColumnIndexOrThrow("Input"));
-            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Guard"));
-            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Startup"));
-            FillNew[++i] = c.getString(c.getColumnIndexOrThrow("Adv"));
-            i=0;
-//            bundle.clear();
-            bundle.putStringArray(Integer.toString(++id), FillNew);
-            getLoaderManager().initLoader(id, bundle, this);
-        }
-        Base.close();
-
-        Log.d(TABLE_LOG, "FDOnCreateView End");
-//        Debug.stopMethodTracing();
-    }
+    }*/
 
     /**
      * This method puts name of character frame data table in fragment
@@ -165,7 +165,18 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
 
     @Override
     public void onLoadFinished(Loader<View> loader, View data) {
-        frameData.addView(data);
+        int loaderId = loader.getId();
+        int childCount = frameData.getChildCount();
+        boolean isAlreadyAdded = false;
+        data.setId(loaderId);
+        if(childCount == 0) frameData.addView(data);
+        else for(int i=0; i < childCount; i++){
+            if(loaderId < frameData.getChildAt(i).getId() && !isAlreadyAdded){
+                frameData.addView(data, i);
+                isAlreadyAdded = true;
+            }
+            else if(i == childCount-1 && !isAlreadyAdded) frameData.addView(data);
+        }
     }
 
     @Override

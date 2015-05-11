@@ -45,7 +45,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -57,7 +58,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -69,7 +71,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -81,7 +84,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -93,7 +97,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -105,7 +110,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -117,7 +123,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -129,7 +136,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -141,7 +149,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -153,7 +162,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -165,7 +175,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -177,7 +188,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -189,7 +201,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -201,7 +214,8 @@
                     android:layout_margin="1dip"
                     android:background="@color/light_row_color"
                     android:paddingLeft="1dp"
-                    android:paddingRight="1dp"/>
+                    android:paddingRight="1dp"
+                    android:gravity="center_horizontal"/>
             </TableRow>
             <ScrollView
                 android:layout_width="match_parent"
