@@ -99,9 +99,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public Loader<View> onCreateLoader(int id, Bundle args) {
-        LayoutInflater Inflater = getActivity().getLayoutInflater();
-        View inflaterView = Inflater.inflate(R.layout.table_row, frameData, false);
-        return new FrameDataLoader(getActivity(), args, true, inflaterView, id);
+        return new FrameDataLoader(getActivity(), args, true, id);
     }
 
     @Override
