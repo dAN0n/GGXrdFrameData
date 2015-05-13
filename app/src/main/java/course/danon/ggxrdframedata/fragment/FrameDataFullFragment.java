@@ -125,6 +125,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
                 idHolder.add(i, loaderId);
             }
         }
+        getLoaderManager().destroyLoader(loaderId);
     }
 
     @Override

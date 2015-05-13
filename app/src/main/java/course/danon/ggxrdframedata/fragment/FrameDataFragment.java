@@ -123,6 +123,7 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
                 idHolder.add(i, loaderId);
             }
         }
+        getLoaderManager().destroyLoader(loaderId);
     }
 
     @Override
