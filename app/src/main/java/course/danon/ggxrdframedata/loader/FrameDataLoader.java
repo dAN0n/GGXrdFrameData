@@ -5,23 +5,30 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import course.danon.ggxrdframedata.R;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class FrameDataLoader extends AsyncTaskLoader<View> {
+import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
+
+public class FrameDataLoader extends AsyncTaskLoader<SimpleAdapter> {
 
     private Context mContext;
-    private final String mData[];
+    private String mData[][];
     private boolean mFull;
-    private int mId;
+    private List<HashMap<String, String>> aList;
+    private SimpleAdapter mAdapter;
 
     public FrameDataLoader (Context context, Bundle args, boolean fullFrameData, int id){
         super(context);
         mContext = context;
-        mData = args.getStringArray(Integer.toString(id));
+        mData = (String[][]) args.getSerializable(KEY_ID);
         mFull = fullFrameData;
-        mId = id;
     }
 
     @Override
@@ -31,7 +38,16 @@ public class FrameDataLoader extends AsyncTaskLoader<View> {
     }
 
     @Override
-    public View loadInBackground() {
+    protected void onReset() {
+        super.onReset();
+        if(aList != null) {
+            aList.clear();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public SimpleAdapter loadInBackground() {
         LayoutInflater Inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View inflaterView = Inflater.inflate(R.layout.table_row, null, false);
         if(!mFull){
@@ -40,16 +56,30 @@ public class FrameDataLoader extends AsyncTaskLoader<View> {
         else{
             fullFrameDataRow(inflaterView);
         }
-        return inflaterView;
+        return mAdapter;
     }
 
     @Override
-    public void deliverResult(View data) {
+    public void deliverResult(SimpleAdapter data) {
         super.deliverResult(data);
     }
 
     private void liteFrameDataRow(View inflaterView){
-        int i = 0;
+        aList = new ArrayList<>();
+        for(int i=0; i< mData[0].length; i++){
+            int j = 0;
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put(KEY_INPUT, mData[j][i]);
+            hm.put(KEY_GUARD, mData[++j][i]);
+            hm.put(KEY_STARTUP, mData[++j][i]);
+            hm.put(KEY_ADV, mData[++j][i]);
+            aList.add(hm);
+        }
+
+        String[] from = { KEY_INPUT, KEY_GUARD, KEY_STARTUP, KEY_ADV };
+        int[] to = { R.id.Input, R.id.Guard, R.id.Startup, R.id.Adv };
+        mAdapter = new SimpleAdapter(mContext, aList, R.layout.list_row, from, to);
+/*        int i = 0;
 
         TextView Input = (TextView) inflaterView.findViewById(R.id.Input);
         TextView Guard = (TextView) inflaterView.findViewById(R.id.Guard);
@@ -71,11 +101,37 @@ public class FrameDataLoader extends AsyncTaskLoader<View> {
         Input.setText(mData[i]);
         Guard.setText(mData[++i]);
         Startup.setText(mData[++i]);
-        Adv.setText(mData[++i]);
+        Adv.setText(mData[++i]);*/
     }
 
     private void fullFrameDataRow(View inflaterView){
-        int i = 0;
+        aList = new ArrayList<>();
+        for(int i=0; i< mData[0].length; i++){
+            int j = 0;
+            HashMap<String, String> hm = new HashMap<>();
+            hm.put(KEY_INPUT, mData[j][i]);
+            hm.put(KEY_DAMAGE, mData[++j][i]);
+            hm.put(KEY_TENSION, mData[++j][i]);
+            hm.put(KEY_RISC, mData[++j][i]);
+            hm.put(KEY_PRORATE, mData[++j][i]);
+            hm.put(KEY_ATTACK, mData[++j][i]);
+            hm.put(KEY_GUARD, mData[++j][i]);
+            hm.put(KEY_CANCEL, mData[++j][i]);
+            hm.put(KEY_RC, mData[++j][i]);
+            hm.put(KEY_STARTUP, mData[++j][i]);
+            hm.put(KEY_ACTIVE, mData[++j][i]);
+            hm.put(KEY_RECOVERY, mData[++j][i]);
+            hm.put(KEY_ADV, mData[++j][i]);
+            hm.put(KEY_INV, mData[++j][i]);
+            aList.add(hm);
+        }
+
+        String[] from = { KEY_INPUT,KEY_DAMAGE, KEY_TENSION, KEY_RISC, KEY_PRORATE, KEY_ATTACK,
+            KEY_GUARD, KEY_CANCEL, KEY_RC, KEY_STARTUP, KEY_ACTIVE, KEY_RECOVERY, KEY_ADV, KEY_INV };
+        int[] to = { R.id.Input, R.id.Damage, R.id.Tension, R.id.RISC, R.id.Prorate, R.id.Attack,
+            R.id.Guard, R.id.Cancel, R.id.RC, R.id.Startup, R.id.Active, R.id.Recovery, R.id.Adv, R.id.Inv };
+        mAdapter = new SimpleAdapter(mContext, aList, R.layout.list_row, from, to);
+/*        int i = 0;
 
         TextView Input = (TextView) inflaterView.findViewById(R.id.Input);
         TextView Damage = (TextView) inflaterView.findViewById(R.id.Damage);
@@ -136,6 +192,6 @@ public class FrameDataLoader extends AsyncTaskLoader<View> {
         Active.setText(mData[++i]);
         Recovery.setText(mData[++i]);
         Adv.setText(mData[++i]);
-        Inv.setText(mData[++i]);
+        Inv.setText(mData[++i]);*/
     }
 }

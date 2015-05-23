@@ -10,6 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 
 import java.util.ArrayList;
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import course.danon.ggxrdframedata.loader.FrameDataLoader;
+import course.danon.ggxrdframedata.view.NestedListView;
 
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
@@ -25,47 +31,54 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
  * @author Zobkov Dmitry (d@N0n)
  * @version 2.0
  */
-public class FrameDataFragment extends Fragment implements LoaderManager.LoaderCallbacks<View>{
+public class FrameDataFragment extends Fragment implements LoaderManager.LoaderCallbacks<SimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
     final String TABLE_LOG = "Fill_log";
-    private TableLayout frameData;
-    private ArrayList<Integer> idHolder;
+    private ListView frameData;
+    private ProgressBar pb;
+//    private ArrayList<Integer> idHolder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(container == null) return null;
         else {
-            View frameDataView = inflater.inflate(R.layout.fragment_frame_data_table_layout, container, false);
-            frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
+            View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
+            frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
+            pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
             Bundle bundle = new Bundle();
-            idHolder = new ArrayList<>();
+//            idHolder = new ArrayList<>();
 //            Debug.startMethodTracing("FDOnActivityCreated");
             Log.d(TABLE_LOG, "FDOnCreateView");
             DataBaseHelper Base = new DataBaseHelper(getActivity());
             String tableName = getArguments().getString(TABLE_NAME);
             Cursor c = Base.getPortraitTable(tableName);
+            int rowCount = Base.getRowCount(tableName)+1;
             int columnCount = c.getColumnCount()-2;
-            String[] headerRow = new String[columnCount];
-            int i = 0;
-            headerRow[i] = getResources().getString(R.string.input);
-            headerRow[++i] = getResources().getString(R.string.guard);
-            headerRow[++i] = getResources().getString(R.string.startup);
-            headerRow[++i] = getResources().getString(R.string.advantage);
-            i=0;
-            int id = 0;
-            bundle.putStringArray(Integer.toString(id), headerRow);
-            getLoaderManager().initLoader(id, bundle, this);
+            String[][] frameTable = new String[columnCount][rowCount];
+            int column = 0;
+            int row = 0;
+            frameTable[column][row] = getResources().getString(R.string.input);
+            frameTable[++column][row] = getResources().getString(R.string.guard);
+            frameTable[++column][row] = getResources().getString(R.string.startup);
+            frameTable[++column][row] = getResources().getString(R.string.advantage);
+            column = 0;
+//            int id = 0;
+//            bundle.putStringArray(Integer.toString(id), headerRow);
+//            getLoaderManager().initLoader(id, bundle, this);
 
             while (c.moveToNext()) {
-                String[] frameDataRow = new String[columnCount];
-                frameDataRow[i] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
-                i=0;
-                bundle.putStringArray(Integer.toString(++id), frameDataRow);
-                getLoaderManager().initLoader(id, bundle, this);
+                row++;
+//                String[] frameDataRow = new String[columnCount];
+                frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
+                column = 0;
+//                bundle.putStringArray(Integer.toString(++id), frameDataRow);
+//                getLoaderManager().initLoader(id, bundle, this);
             }
+            bundle.putSerializable(KEY_ID, frameTable);
+            getLoaderManager().initLoader(0, bundle, this);
             Base.close();
 
             Log.d(TABLE_LOG, "FDOnCreateView End");
@@ -78,7 +91,7 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     public void onDestroyView() {
         super.onDestroyView();
         if(frameData != null){
-            frameData.removeAllViews();
+            getLoaderManager().destroyLoader(0);
         }
     }
 
@@ -96,13 +109,29 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     }
 
     @Override
-    public Loader<View> onCreateLoader(int id, Bundle args) {
+    public Loader<SimpleAdapter> onCreateLoader(int id, Bundle args) {
+        Log.d(TABLE_LOG, "load start");
         return new FrameDataLoader(getActivity(), args, false, id);
     }
 
     @Override
-    public void onLoadFinished(Loader<View> loader, View data) {
-        int loaderId = loader.getId();
+    public void onLoadFinished(Loader<SimpleAdapter> loader, SimpleAdapter data) {
+        Log.d(TABLE_LOG, "load finish");
+        frameData.setAdapter(data);
+        Log.d(TABLE_LOG, "adapter is set");
+        frameData.postDelayed(new Runnable() {
+            public void run() {
+                setListViewHeightBasedOnChildren(frameData);
+                pb.setVisibility(View.GONE);
+                frameData.setVisibility(View.VISIBLE);
+            }
+        }, 1);
+//        pb.setVisibility(View.GONE);
+//        frameData.setVisibility(View.VISIBLE);
+        Log.d(TABLE_LOG, "height set");
+        Log.d(TABLE_LOG, "pb is gone");
+//        getLoaderManager().destroyLoader(0);
+/*        int loaderId = loader.getId();
         int childCount = frameData.getChildCount();
         boolean isAlreadyAdded = false;
         if(childCount == 0){
@@ -123,11 +152,38 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
                 idHolder.add(i, loaderId);
             }
         }
-        getLoaderManager().destroyLoader(loaderId);
+        getLoaderManager().destroyLoader(loaderId);*/
     }
 
     @Override
-    public void onLoaderReset(Loader<View> loader) {
+    public void onLoaderReset(Loader<SimpleAdapter> loader) {
+        loader.reset();
+    }
 
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+
+            if(listItem != null){
+                // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
+                listItem.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                totalHeight += listItem.getMeasuredHeight();
+
+            }
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

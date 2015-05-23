@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/CharPic"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:adjustViewBounds="true"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:contentDescription="@string/char_pic"
         android:maxHeight="600dp"
         android:scaleType="fitXY"/>
@@ -22,12 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="240dp"
         android:id="@+id/CharInfo"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:dividerHeight="0dp"
         android:divider="@color/invisible"
         android:listSelector="@color/invisible"
-        android:nestedScrollingEnabled="false"
         android:smoothScrollbar="false"
-        android:layout_weight="2"/>
+        android:layout_weight="1"
+        android:scrollbars="none"/>
 
 </LinearLayout>

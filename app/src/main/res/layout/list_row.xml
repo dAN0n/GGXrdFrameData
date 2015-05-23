@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/Row">
-<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/input"
         android:id="@+id/Input"
@@ -14,10 +14,10 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal" android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/guard"
         android:id="@+id/Guard"
@@ -26,10 +26,10 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal" android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/startup"
         android:id="@+id/Startup"
@@ -38,10 +38,10 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal" android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/advantage"
         android:id="@+id/Adv"
@@ -50,6 +50,6 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
--->
-</TableRow>
+        android:gravity="center_horizontal" android:background="@color/light_row_color"/>
+
+</LinearLayout>

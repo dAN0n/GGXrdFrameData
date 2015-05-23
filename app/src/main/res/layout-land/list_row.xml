@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/Row">
-<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/input"
         android:id="@+id/Input"
@@ -14,10 +14,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/damage"
         android:id="@+id/Damage"
@@ -26,10 +27,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/tension"
         android:id="@+id/Tension"
@@ -38,10 +40,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/risc"
         android:id="@+id/RISC"
@@ -50,10 +53,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/prorate"
         android:id="@+id/Prorate"
@@ -62,10 +66,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/attacklv"
         android:id="@+id/Attack"
@@ -74,10 +79,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/guard"
         android:id="@+id/Guard"
@@ -86,10 +92,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/cancel"
         android:id="@+id/Cancel"
@@ -98,10 +105,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/rc"
         android:id="@+id/RC"
@@ -110,10 +118,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/startup"
         android:id="@+id/Startup"
@@ -122,10 +131,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/active"
         android:id="@+id/Active"
@@ -134,10 +144,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/recovery"
         android:id="@+id/Recovery"
@@ -146,10 +157,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/adv"
         android:id="@+id/Adv"
@@ -158,10 +170,11 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:text="@string/inv"
         android:id="@+id/Inv"
@@ -170,6 +183,7 @@
         android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal"/>
--->
-</TableRow>
+        android:gravity="center_horizontal"
+        android:background="@color/light_row_color"/>
+
+</LinearLayout>

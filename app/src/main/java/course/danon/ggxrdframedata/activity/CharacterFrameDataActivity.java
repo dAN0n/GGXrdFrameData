@@ -34,11 +34,11 @@ import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-//TODO Потестировать typeFace monospace
-//TODO Подумать над цветами таблицы
-//TODO Прикрутить-таки Loader
 //TODO Разобраться с profiler и hierarchyviewer для отчёта
 //TODO Доделать javaDoc и сгенерировать
+//TODO Использовать в xml fragment
+//TODO Уменьшить количество лоадеров до одного и updatethrottle с колесом загрузки
+//TODO разобраться с ListFragment
 
 /**
  * Activity with frame data of character
@@ -101,7 +101,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         }
 
         String[] from = { DRAWER_IMAGE, DRAWER_TEXT };
-        int[] to = { R.id.DrawerImage,R.id.DrawerText };
+        int[] to = { R.id.DrawerImage, R.id.DrawerText };
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.drawer_list_item, from, to);
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());

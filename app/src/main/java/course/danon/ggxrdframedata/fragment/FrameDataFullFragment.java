@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import course.danon.ggxrdframedata.loader.FrameDataLoader;
+import course.danon.ggxrdframedata.view.NestedListView;
 
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
@@ -24,49 +28,56 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
  * @author Zobkov Dmitry (d@N0n)
  * @version 2.0
  */
-public class FrameDataFullFragment extends Fragment implements LoaderManager.LoaderCallbacks<View>{
+public class FrameDataFullFragment extends Fragment implements LoaderManager.LoaderCallbacks<SimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
     final String TABLE_LOG = "Fill_log";
-    private TableLayout frameData;
-    private ArrayList<Integer> idHolder;
+    private ListView frameData;
+    private ProgressBar pb;
+//    private ArrayList<Integer> idHolder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(container == null) return null;
         else {
-            View frameDataView = inflater.inflate(R.layout.fragment_frame_data_table_layout, container, false);
-            frameData = (TableLayout) frameDataView.findViewById(R.id.framedatatable);
+            View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
+            pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
+            frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
             Bundle bundle = new Bundle();
-            idHolder = new ArrayList<>();
+//            idHolder = new ArrayList<>();
 //            Debug.startMethodTracing("FDOnActivityCreated");
             Log.d(TABLE_LOG, "FDOnCreateView");
             DataBaseHelper Base = new DataBaseHelper(getActivity());
             String tableName = getArguments().getString(TABLE_NAME);
             Cursor c = Base.getLandscapeTable(tableName);
+            int rowCount = Base.getRowCount(tableName);
             int columnCount = c.getColumnCount()-2;
-            int i = 0;
-            int id = 0;
+            String[][] frameTable = new String[columnCount][rowCount];
+            int column = 0;
+            int row = 0;
+//            int id = 0;
 
             while (c.moveToNext()) {
-                String[] frameDataRow = new String[columnCount];
-                frameDataRow[i] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_DAMAGE));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_TENSION));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_RISC));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_PRORATE));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_ATTACK));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_CANCEL));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_RC));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_ACTIVE));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_RECOVERY));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
-                frameDataRow[++i] = c.getString(c.getColumnIndexOrThrow(KEY_INV));
-                i=0;
-                bundle.putStringArray(Integer.toString(++id), frameDataRow);
-                getLoaderManager().initLoader(id, bundle, this);
+                frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_DAMAGE));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_TENSION));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RISC));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_PRORATE));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ATTACK));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_CANCEL));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RC));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ACTIVE));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RECOVERY));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
+                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INV));
+                column = 0;
+                row++;
+//                bundle.putStringArray(Integer.toString(++id), frameDataRow);
+//                getLoaderManager().initLoader(id, bundle, this);
             }
+            bundle.putSerializable(KEY_ID, frameTable);
+            getLoaderManager().initLoader(0, bundle, this);
             Base.close();
 
             Log.d(TABLE_LOG, "FDOnCreateView End");
@@ -79,7 +90,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
     public void onDestroyView() {
         super.onDestroyView();
         if(frameData != null){
-            frameData.removeAllViews();
+            getLoaderManager().destroyLoader(0);
         }
     }
 
@@ -98,13 +109,19 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public Loader<View> onCreateLoader(int id, Bundle args) {
+    public Loader<SimpleAdapter> onCreateLoader(int id, Bundle args) {
         return new FrameDataLoader(getActivity(), args, true, id);
     }
 
     @Override
-    public void onLoadFinished(Loader<View> loader, View data) {
-        int loaderId = loader.getId();
+    public void onLoadFinished(Loader<SimpleAdapter> loader, SimpleAdapter data) {
+        pb.setVisibility(View.GONE);
+        Log.d(TABLE_LOG, "pb is gone");
+        frameData.setAdapter(data);
+        Log.d(TABLE_LOG, "adapter is set");
+        frameData.setVisibility(View.VISIBLE);
+//        getLoaderManager().destroyLoader(0);
+/*        int loaderId = loader.getId();
         int childCount = frameData.getChildCount();
         boolean isAlreadyAdded = false;
         if(childCount == 0){
@@ -125,11 +142,11 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
                 idHolder.add(i, loaderId);
             }
         }
-        getLoaderManager().destroyLoader(loaderId);
+        getLoaderManager().destroyLoader(loaderId);*/
     }
 
     @Override
-    public void onLoaderReset(Loader<View> loader) {
-
+    public void onLoaderReset(Loader<SimpleAdapter> loader) {
+        loader.reset();
     }
 }
