@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import course.danon.ggxrdframedata.loader.FrameDataLoader;
+import course.danon.ggxrdframedata.view.ExpandableHeightListView;
 import course.danon.ggxrdframedata.view.NestedListView;
 
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
@@ -31,7 +32,7 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 public class FrameDataFullFragment extends Fragment implements LoaderManager.LoaderCallbacks<SimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
     final String TABLE_LOG = "Fill_log";
-    private ListView frameData;
+    private NestedListView frameData;
     private ProgressBar pb;
 //    private ArrayList<Integer> idHolder;
 
@@ -41,7 +42,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
-            frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
+            frameData = (NestedListView) frameDataView.findViewById(R.id.frameDataList);
             Bundle bundle = new Bundle();
 //            idHolder = new ArrayList<>();
 //            Debug.startMethodTracing("FDOnActivityCreated");

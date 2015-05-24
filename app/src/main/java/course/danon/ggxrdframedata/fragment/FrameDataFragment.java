@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
 import course.danon.ggxrdframedata.loader.FrameDataLoader;
+import course.danon.ggxrdframedata.view.ExpandableHeightListView;
 import course.danon.ggxrdframedata.view.NestedListView;
 
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
@@ -34,7 +35,7 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 public class FrameDataFragment extends Fragment implements LoaderManager.LoaderCallbacks<SimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
     final String TABLE_LOG = "Fill_log";
-    private ListView frameData;
+    private NestedListView frameData;
     private ProgressBar pb;
 //    private ArrayList<Integer> idHolder;
 
@@ -43,7 +44,7 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
         if(container == null) return null;
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
-            frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
+            frameData = (NestedListView) frameDataView.findViewById(R.id.frameDataList);
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
             Bundle bundle = new Bundle();
 //            idHolder = new ArrayList<>();
@@ -118,17 +119,26 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     public void onLoadFinished(Loader<SimpleAdapter> loader, SimpleAdapter data) {
         Log.d(TABLE_LOG, "load finish");
         frameData.setAdapter(data);
-        Log.d(TABLE_LOG, "adapter is set");
         frameData.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                frameData.setExpanded(true);
+                pb.setVisibility(View.GONE);
+                frameData.setVisibility(View.VISIBLE);
+                Log.d(TABLE_LOG, "height set");
+            }
+        }, 1);
+        Log.d(TABLE_LOG, "adapter is set");
+/*        frameData.postDelayed(new Runnable() {
             public void run() {
                 setListViewHeightBasedOnChildren(frameData);
                 pb.setVisibility(View.GONE);
                 frameData.setVisibility(View.VISIBLE);
             }
-        }, 1);
+        }, 1);*/
 //        pb.setVisibility(View.GONE);
 //        frameData.setVisibility(View.VISIBLE);
-        Log.d(TABLE_LOG, "height set");
+//        Log.d(TABLE_LOG, "height set");
         Log.d(TABLE_LOG, "pb is gone");
 //        getLoaderManager().destroyLoader(0);
 /*        int loaderId = loader.getId();
@@ -175,7 +185,7 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
             if(listItem != null){
                 // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
                 listItem.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                listItem.measure(View.MeasureSpec.AT_MOST, View.MeasureSpec.UNSPECIFIED);
                 totalHeight += listItem.getMeasuredHeight();
 
             }
