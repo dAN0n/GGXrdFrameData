@@ -34,11 +34,8 @@ import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-//TODO Разобраться с profiler и hierarchyviewer для отчёта
 //TODO Доделать javaDoc и сгенерировать
 //TODO Использовать в xml fragment
-//TODO Уменьшить количество лоадеров до одного и updatethrottle с колесом загрузки
-//TODO разобраться с ListFragment
 
 /**
  * Activity with frame data of character
@@ -82,7 +79,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-//        mActivityTitle = getTitle().toString();
 
         Cursor c = Base.getColumn(KEY_CHAR_SELECT, KEY_ICON);
         String[] charIcons = new String[charList.length];

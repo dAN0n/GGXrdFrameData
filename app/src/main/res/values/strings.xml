@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="version" translatable="false">0.8.2</string>
+    <string name="version" translatable="false">0.9.0</string>
     <string name="app_name" translatable="false">Guilty Gear Xrd Frame Data</string>
-    <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v0.8.2</string>
+    <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v0.9.0</string>
     <string name="about_message">\n Project by Zobkov Dmitry aka d@N0n\n
         <a href="http://www.dustloop.com/">Source of frame data information</a>\n
         All images are from the <a href="http://www.ggxrd.com/">official game website</a>\n</string>

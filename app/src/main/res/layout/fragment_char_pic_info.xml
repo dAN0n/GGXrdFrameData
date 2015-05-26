@@ -18,7 +18,18 @@
         android:maxHeight="600dp"
         android:scaleType="fitXY"/>
 
-    <ListView
+    <view android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          class="course.danon.ggxrdframedata.view.NestedListView"
+          android:id="@+id/CharInfo"
+          android:layout_gravity="end"
+          android:dividerHeight="0dp"
+          android:divider="@color/invisible"
+          android:listSelector="@color/invisible"
+          android:smoothScrollbar="false"
+          android:layout_weight="1"
+          android:scrollbars="none"/>
+    <!--ListView
         android:layout_width="wrap_content"
         android:layout_height="240dp"
         android:id="@+id/CharInfo"
@@ -28,6 +39,6 @@
         android:listSelector="@color/invisible"
         android:smoothScrollbar="false"
         android:layout_weight="1"
-        android:scrollbars="none"/>
+        android:scrollbars="none"/-->
 
 </LinearLayout>
