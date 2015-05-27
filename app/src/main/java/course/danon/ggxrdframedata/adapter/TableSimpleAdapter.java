@@ -2,12 +2,9 @@ package course.danon.ggxrdframedata.adapter;
 
 
 import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +13,6 @@ import course.danon.ggxrdframedata.R;
 
 public class TableSimpleAdapter extends SimpleAdapter{
 
-    private static final String TAG_COLOR = "COLOR";
     private int[] colors;
     private Context mContext;
     private int colorPos;
@@ -39,24 +35,15 @@ public class TableSimpleAdapter extends SimpleAdapter{
         super(context, data, resource, from, to);
 
         mContext = context;
-//        mColor = Color;
-        colors = new int[]{mContext.getResources().getColor(R.color.dark_row_color),
-            mContext.getResources().getColor(R.color.light_row_color)};
-    }
-
-    @Override
-    public void setViewText(TextView v, String text) {
-        super.setViewText(v, text);
-        v.setBackgroundColor(colors[colorPos]);
+        colors = new int[]{mContext.getResources().getColor(R.color.light_row_color),
+            mContext.getResources().getColor(R.color.dark_row_color)};
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
-//        for(int i = 0; i < view.)
         colorPos = position % 2;
-        Log.d("Fill", Integer.toString(colorPos) + " " + Integer.toString(position));
-//        view.setBackgroundColor(colors[colorPos]);
+        view.setBackgroundColor(colors[colorPos]);
         return view;
     }
 }

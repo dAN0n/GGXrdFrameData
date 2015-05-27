@@ -3,7 +3,6 @@ package course.danon.ggxrdframedata.loader;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.os.Bundle;
-//import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,12 +68,6 @@ public class FrameDataLoader extends AsyncTaskLoader<TableSimpleAdapter> {
             hm.put(KEY_GUARD, mData[++j][i]);
             hm.put(KEY_STARTUP, mData[++j][i]);
             hm.put(KEY_ADV, mData[++j][i]);
-/*            if(i % 2 != 0){
-                hm.put("COLOR", Integer.toString(R.color.dark_row_color));
-            }
-            else{
-                hm.put("COLOR", Integer.toString(R.color.light_row_color));
-            }*/
             aList.add(hm);
         }
 
