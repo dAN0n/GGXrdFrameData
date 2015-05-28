@@ -42,8 +42,7 @@
                     android:id="@+id/Input"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -55,8 +54,7 @@
                     android:id="@+id/Damage"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -68,8 +66,7 @@
                     android:id="@+id/Tension"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -81,8 +78,7 @@
                     android:id="@+id/RISC"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -94,8 +90,7 @@
                     android:id="@+id/Prorate"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -107,8 +102,7 @@
                     android:id="@+id/Attack"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -120,8 +114,7 @@
                     android:id="@+id/Guard"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -133,8 +126,7 @@
                     android:id="@+id/Cancel"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -146,8 +138,7 @@
                     android:id="@+id/RC"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -159,8 +150,7 @@
                     android:id="@+id/Startup"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -172,8 +162,7 @@
                     android:id="@+id/Active"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -185,8 +174,7 @@
                     android:id="@+id/Recovery"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -198,8 +186,7 @@
                     android:id="@+id/Adv"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>
@@ -211,8 +198,7 @@
                     android:id="@+id/Inv"
                     android:textColor="@color/black"
                     android:layout_weight="1"
-                    android:layout_margin="1dip"
-                    android:background="@color/invisible"
+                    android:background="@drawable/cell_border"
                     android:paddingLeft="1dp"
                     android:paddingRight="1dp"
                     android:gravity="center_horizontal"/>

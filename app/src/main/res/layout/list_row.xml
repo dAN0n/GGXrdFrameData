@@ -11,10 +11,9 @@
         android:id="@+id/Input"
         android:textColor="@color/black"
         android:layout_weight="1"
-        android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal" android:background="@color/invisible"/>
+        android:gravity="center_horizontal" android:background="@drawable/cell_border"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -23,10 +22,9 @@
         android:id="@+id/Guard"
         android:textColor="@color/black"
         android:layout_weight="1"
-        android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal" android:background="@color/invisible"/>
+        android:gravity="center_horizontal" android:background="@drawable/cell_border"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -35,10 +33,9 @@
         android:id="@+id/Startup"
         android:textColor="@color/black"
         android:layout_weight="1"
-        android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal" android:background="@color/invisible"/>
+        android:gravity="center_horizontal" android:background="@drawable/cell_border"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -47,9 +44,8 @@
         android:id="@+id/Adv"
         android:textColor="@color/black"
         android:layout_weight="1"
-        android:layout_margin="1dip"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:gravity="center_horizontal" android:background="@color/invisible"/>
+        android:gravity="center_horizontal" android:background="@drawable/cell_border"/>
 
 </LinearLayout>
