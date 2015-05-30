@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
@@ -55,11 +54,13 @@ public class CharPicInfoFragment extends Fragment {
             }
             Base.close();
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.char_info_list_view, charInfo);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
+                R.layout.char_info_list_view, charInfo);
             infoList.setAdapter(adapter);
             infoList.setExpanded(true);
 
-            charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable", getActivity().getPackageName()));
+            charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable",
+                getActivity().getPackageName()));
             Log.d(TABLE_LOG, "CharPicOnCreateView End");
 //        Debug.stopMethodTracing();
 

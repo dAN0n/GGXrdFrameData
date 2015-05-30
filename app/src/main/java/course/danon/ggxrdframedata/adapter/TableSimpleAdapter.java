@@ -14,8 +14,6 @@ import course.danon.ggxrdframedata.R;
 public class TableSimpleAdapter extends SimpleAdapter{
 
     private int[] colors;
-    private Context mContext;
-    private int colorPos;
 
     /**
      * Constructor
@@ -31,18 +29,18 @@ public class TableSimpleAdapter extends SimpleAdapter{
      * @param to       The views that should display column in the "from" parameter. These should all be
      *                 TextViews. The first N views in this list are given the values of the first N columns
      */
-    public TableSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
+    public TableSimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource,
+                              String[] from, int[] to) {
         super(context, data, resource, from, to);
 
-        mContext = context;
-        colors = new int[]{mContext.getResources().getColor(R.color.light_row_color),
-            mContext.getResources().getColor(R.color.dark_row_color)};
+        colors = new int[]{context.getResources().getColor(R.color.light_row_color),
+            context.getResources().getColor(R.color.dark_row_color)};
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
-        colorPos = position % 2;
+        int colorPos = position % 2;
         view.setBackgroundColor(colors[colorPos]);
         return view;
     }

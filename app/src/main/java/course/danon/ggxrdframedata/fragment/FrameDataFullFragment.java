@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 
 import course.danon.ggxrdframedata.adapter.TableSimpleAdapter;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;

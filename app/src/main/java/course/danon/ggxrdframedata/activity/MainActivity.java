@@ -50,7 +50,8 @@ public class MainActivity extends ActionBarActivity {
         Base.close();
 
         ListView ListView = (ListView)findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.main_activity_list_view_item, Char);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+            R.layout.main_activity_list_view_item, Char);
         ListView.setAdapter(adapter);
 
         ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

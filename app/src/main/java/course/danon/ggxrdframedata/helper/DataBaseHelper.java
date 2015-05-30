@@ -145,7 +145,8 @@ public class DataBaseHelper extends SQLiteAssetHelper {
             KEY_BACKDASH_TIME,
             KEY_BACKDASH_INV,
             KEY_IK_ACTIVATION};
-        return db.query(KEY_CHAR_SELECT, Selection, KEY_WHERE_ID_QUESTION, new String[]{id}, null, null, null);
+        return db.query(KEY_CHAR_SELECT, Selection, KEY_WHERE_ID_QUESTION, new String[]{id},
+            null, null, null);
     }
 
     /**

@@ -91,14 +91,16 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         List<HashMap<String,String>> aList = new ArrayList<>();
         for(i=0; i< charList.length; i++){
             HashMap<String, String> hm = new HashMap<>();
-            hm.put(DRAWER_IMAGE, Integer.toString(getResources().getIdentifier(charIcons[i], "drawable", getPackageName())));
+            hm.put(DRAWER_IMAGE, Integer.toString(getResources().getIdentifier(charIcons[i],
+                "drawable", getPackageName())));
             hm.put(DRAWER_TEXT, charList[i]);
             aList.add(hm);
         }
 
         String[] from = { DRAWER_IMAGE, DRAWER_TEXT };
         int[] to = { R.id.DrawerImage, R.id.DrawerText };
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.drawer_list_item, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(),
+            aList, R.layout.drawer_list_item, from, to);
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         setupDrawer();
