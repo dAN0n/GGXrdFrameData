@@ -6,7 +6,6 @@
                                         android:layout_height="match_parent">
 
     <!-- The main content view -->
-
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -29,184 +28,21 @@
                 android:textColor="@color/black"
                 android:gravity="center"
                 />
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/CharNameLabel"
-                android:id="@+id/TitleRow"
-                android:background="@color/light_grid_row_color">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/input"
-                    android:id="@+id/Input"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/damage"
-                    android:id="@+id/Damage"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/tension"
-                    android:id="@+id/Tension"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/risc"
-                    android:id="@+id/RISC"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/prorate"
-                    android:id="@+id/Prorate"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/attacklv"
-                    android:id="@+id/Attack"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/guard"
-                    android:id="@+id/Guard"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/cancel"
-                    android:id="@+id/Cancel"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/rc"
-                    android:id="@+id/RC"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/startup"
-                    android:id="@+id/Startup"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/active"
-                    android:id="@+id/Active"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/recovery"
-                    android:id="@+id/Recovery"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/adv"
-                    android:id="@+id/Adv"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/inv"
-                    android:id="@+id/Inv"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:background="@drawable/cell_border"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:gravity="center_horizontal"/>
-            </TableRow>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:layout_below="@+id/TitleRow">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/CharNameLabel"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/list_row"
+                    android:layout_gravity="center_horizontal|top"/>
+
                 <FrameLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" android:id="@+id/FDFullContainer">
@@ -214,8 +50,8 @@
             </LinearLayout>
         </RelativeLayout>
     </FrameLayout>
-    <!-- The navigation drawer -->
 
+    <!-- The navigation drawer -->
     <ListView
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
