@@ -104,47 +104,16 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     public void onLoadFinished(Loader<TableSimpleAdapter> loader, TableSimpleAdapter data) {
         Log.d(TABLE_LOG, "load finish");
         frameData.setAdapter(data);
-        frameData.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                frameData.setExpanded(true);
-                pb.setVisibility(View.GONE);
-                Log.d(TABLE_LOG, "pb is gone");
-                frameData.setVisibility(View.VISIBLE);
-                Log.d(TABLE_LOG, "height set");
-            }
-        }, 500);
+        frameData.setExpanded(true);
+        pb.setVisibility(View.GONE);
+        Log.d(TABLE_LOG, "pb is gone");
+        frameData.setFocusable(false);
+        frameData.setVisibility(View.VISIBLE);
+        Log.d(TABLE_LOG, "height set");
     }
 
     @Override
     public void onLoaderReset(Loader<TableSimpleAdapter> loader) {
         loader.reset();
     }
-
-/*    public void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return;
-        }
-
-        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY);
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-
-            if(listItem != null){
-                // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
-                listItem.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-                listItem.measure(View.MeasureSpec.AT_MOST, View.MeasureSpec.UNSPECIFIED);
-                totalHeight += listItem.getMeasuredHeight();
-
-            }
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-    }*/
 }

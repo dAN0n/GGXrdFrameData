@@ -108,22 +108,22 @@ public class DataBaseHelper extends SQLiteAssetHelper {
     public Cursor getRow(String TableName, String id){
         open();
         String Selection[] = new String[]{
-                    KEY_ID,
-                    KEY_INPUT,
-                    KEY_DAMAGE,
-                    KEY_TENSION,
-                    KEY_RISC,
-                    KEY_PRORATE,
-                    KEY_ATTACK_LV,
-                    KEY_GUARD,
-                    KEY_CANCEL,
-                    KEY_RC,
-                    KEY_STARTUP,
-                    KEY_ACTIVE,
-                    KEY_RECOVERY,
-                    KEY_FRAME_ADV,
-                    KEY_INVUL,
-                    KEY_TYPE};
+            KEY_ID,
+            KEY_INPUT,
+            KEY_DAMAGE,
+            KEY_TENSION,
+            KEY_RISC,
+            KEY_PRORATE,
+            KEY_ATTACK_LV,
+            KEY_GUARD,
+            KEY_CANCEL,
+            KEY_RC,
+            KEY_STARTUP,
+            KEY_ACTIVE,
+            KEY_RECOVERY,
+            KEY_FRAME_ADV,
+            KEY_INVUL,
+            KEY_TYPE};
         return db.query(TableName, Selection, KEY_WHERE_ID_QUESTION, new String[]{id}, null, null, null);
     }
 

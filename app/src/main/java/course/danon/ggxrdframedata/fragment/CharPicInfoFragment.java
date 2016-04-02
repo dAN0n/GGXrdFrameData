@@ -7,12 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
-import course.danon.ggxrdframedata.view.NestedListView;
 
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
@@ -32,7 +31,7 @@ public class CharPicInfoFragment extends Fragment {
         else {
             View CharPicInfoView = inflater.inflate(R.layout.fragment_char_pic_info, container, false);
 
-            NestedListView infoList = (NestedListView) CharPicInfoView.findViewById(R.id.CharInfo);
+            TextView infoList = (TextView) CharPicInfoView.findViewById(R.id.CharInfo);
             ImageView charIcon = (ImageView) CharPicInfoView.findViewById(R.id.CharPic);
 
             final String TABLE_LOG = "Fill_log";
@@ -54,10 +53,11 @@ public class CharPicInfoFragment extends Fragment {
             }
             Base.close();
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),
-                R.layout.char_info_list_view, charInfo);
-            infoList.setAdapter(adapter);
-            infoList.setExpanded(true);
+            String charInfoSet = "";
+            for(int i = 0; i < 7; i++){
+                charInfoSet += charInfo[i] + "\n";
+            }
+            infoList.setText(charInfoSet);
 
             charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable",
                 getActivity().getPackageName()));
