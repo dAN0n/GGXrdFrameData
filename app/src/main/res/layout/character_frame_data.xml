@@ -28,36 +28,13 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center"/>
-            <!--<FrameLayout
+            <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:id="@+id/FDContainer" android:layout_below="@+id/CharNameLabel">
-            </FrameLayout>-->
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/scrollView2"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/CharNameLabel" android:fillViewport="true">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:id="@+id/CharPicContainer">
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:id="@+id/FDContainer">
-                    </FrameLayout>
-                </LinearLayout>
-            </ScrollView>
+                android:id="@+id/FDContainer"
+                android:layout_below="@+id/CharNameLabel">
+            </FrameLayout>
         </RelativeLayout>
     </FrameLayout>
     <!-- The navigation drawer -->

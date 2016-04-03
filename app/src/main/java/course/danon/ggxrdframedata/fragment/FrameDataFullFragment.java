@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import course.danon.ggxrdframedata.adapter.TableSimpleAdapter;
@@ -27,7 +28,7 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 public class FrameDataFullFragment extends Fragment implements LoaderManager.LoaderCallbacks<TableSimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
     final String TABLE_LOG = "Fill_log";
-    private NestedListView frameData;
+    private ListView frameData;
     private ProgressBar pb;
 
     @Override
@@ -36,7 +37,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
-            frameData = (NestedListView) frameDataView.findViewById(R.id.frameDataList);
+            frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
             Bundle bundle = new Bundle();
 //            Debug.startMethodTracing("FDOnActivityCreated");
             Log.d(TABLE_LOG, "FDOnCreateView");

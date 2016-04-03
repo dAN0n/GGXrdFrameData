@@ -122,10 +122,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
+//            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
             FragmentManager fm = getFragmentManager();
-            fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic).commit();
-            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName);
+//            fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic).commit();
+            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName, CharId);
             fm.beginTransaction().replace(R.id.FDContainer, fragFD).commit();
 
             Log.d(TABLE_LOG, "CharName Set");
@@ -191,10 +191,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
-            fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
+//            CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
+//            fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
 
-            FrameDataFragment fragment2 = FrameDataFragment.newInstance(CharTableName);
+            FrameDataFragment fragment2 = FrameDataFragment.newInstance(CharTableName, Id);
             fragmentManager.beginTransaction().replace(R.id.FDContainer, fragment2).commit();
         }
         else {

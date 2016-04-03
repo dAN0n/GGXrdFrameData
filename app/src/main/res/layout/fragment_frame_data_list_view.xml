@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar" android:visibility="visible"/>
-    <view android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          class="course.danon.ggxrdframedata.view.NestedListView"
-          android:id="@+id/frameDataList"
-          android:visibility="gone"
-          android:background="@color/black"
-          android:divider="@color/invisible"
-          android:dividerHeight="0dp"/>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameDataList"
+        android:visibility="gone"
+        android:background="@color/black"
+        android:divider="@color/invisible"
+        android:dividerHeight="0dp"/>
 </LinearLayout>
