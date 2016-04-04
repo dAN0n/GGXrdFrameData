@@ -1,9 +1,8 @@
 package course.danon.ggxrdframedata.activity;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import course.danon.ggxrdframedata.fragment.CharPicInfoFragment;
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.fragment.FrameDataFragment;
 import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
@@ -36,7 +34,11 @@ import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 //TODO Доделать javaDoc и сгенерировать
-//TODO Использовать в xml fragment
+//TODO Почистить мусор
+//TODO Объединить фрагменты с таблицами в один
+//TODO Переделать TextView во фрагменте с картинкой
+//TODO Разные размеры картинки и текста для разных устройств (+чёрный текст)
+//TODO Обновить фреймдату и добавить фреймдату к другим играм
 
 /**
  * Activity with frame data of character
@@ -123,9 +125,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
-            FragmentManager fm = getFragmentManager();
-//            fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic).commit();
+            FragmentManager fm = getSupportFragmentManager();
             FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName, CharId);
             fm.beginTransaction().replace(R.id.FDContainer, fragFD).commit();
 
@@ -134,7 +134,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 
         else {
             FrameDataFullFragment fragFDFull = FrameDataFullFragment.newInstance(CharTableName);
-            FragmentTransaction fm = getFragmentManager().beginTransaction();
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
             fm.replace(R.id.FDFullContainer, fragFDFull).commit();
 
             Log.d(TABLE_LOG, "CharName Set Land");
@@ -182,7 +182,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
      */
     private void selectItem(int position) {
         String Id = Integer.toString(position+1);
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         Cursor c = Base.getCharInfo(Id);
         String CharTableName = null;
         while (c.moveToNext()) {
@@ -192,9 +192,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
-//            fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
-
             FrameDataFragment fragment2 = FrameDataFragment.newInstance(CharTableName, Id);
             fragmentManager.beginTransaction().replace(R.id.FDContainer, fragment2).commit();
         }
@@ -228,7 +225,7 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Fragment fragment = getFragmentManager().findFragmentByTag("charPic");
+        android.app.Fragment fragment = getFragmentManager().findFragmentByTag("charPic");
         if (fragment != null) {
             super.onSaveInstanceState(outState);
         }
