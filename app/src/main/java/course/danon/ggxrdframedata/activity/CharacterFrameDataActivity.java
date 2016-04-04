@@ -1,6 +1,7 @@
 package course.danon.ggxrdframedata.activity;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
@@ -227,7 +228,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
      */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        Fragment fragment = getFragmentManager().findFragmentByTag("charPic");
+        if (fragment != null) {
+            super.onSaveInstanceState(outState);
+        }
         outState.putString(CHAR_ID, CharId);
     }
 
