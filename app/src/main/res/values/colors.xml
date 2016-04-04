@@ -2,6 +2,8 @@
 <resources>
     <color name="light_row_color">#feee</color>
     <color name="dark_row_color">#fccc</color>
+    <color name="light_grid_row_color">#B0BEC5</color>
+    <color name="dark_grid_row_color">#90A4AE</color>
     <color name="black">#f000</color>
     <color name="white">#ffff</color>
     <color name="invisible">#0000</color>

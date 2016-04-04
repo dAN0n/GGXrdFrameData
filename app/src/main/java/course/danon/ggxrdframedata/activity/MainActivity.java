@@ -19,8 +19,13 @@ import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-
+/**
+ * Main Menu activity with list of characters for selecting
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 1.5
+ */
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -28,38 +33,35 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(R.string.app_name);
-        final String LOG_TAG = "main";
 
         final Intent intent = new Intent(this, CharacterFrameDataActivity.class);
         DataBaseHelper Base = new DataBaseHelper(this);
-        String TableName = "CharSelect";
-        String Selection = "Char";
-        int CharCount = Base.getRowCount(TableName);
+        int CharCount = Base.getRowCount(KEY_CHAR_SELECT);
         String msg = String.valueOf(CharCount);
-        Log.d(LOG_TAG, msg);
+        Log.d(TABLE_LOG, "Char count: " + msg);
 
-        Cursor c = Base.getColumn(TableName, Selection);
+        Cursor c = Base.getColumn(KEY_CHAR_SELECT, KEY_CHAR);
         int i = 0;
         final String[] Char = new String[CharCount];
         while(c.moveToNext()){
-            Char[i] = c.getString(c.getColumnIndexOrThrow(Selection));
+            Char[i] = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
             i++;
         }
         Base.close();
 
         ListView ListView = (ListView)findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.main_activity_list_view_item, Char);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+            R.layout.main_activity_list_view_item, Char);
         ListView.setAdapter(adapter);
 
         ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
-                String msg2 = String.valueOf(id);
                 String CharId = String.valueOf(id + 1);
-                Log.d(LOG_TAG, msg2);
-                intent.putExtra("CharId", CharId);
-                intent.putExtra("CharList", Char);
+                Log.d(TABLE_LOG, "Selected CharId: " + CharId);
+                intent.putExtra(CHAR_ID, CharId);
+                intent.putExtra(CHAR_LIST, Char);
                 startActivity(intent);
             }
         });

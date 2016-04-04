@@ -32,16 +32,27 @@ import course.danon.ggxrdframedata.helper.DataBaseHelper;
 import course.danon.ggxrdframedata.fragment.FrameDataFragment;
 import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
+import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-//TODO Переделать TableLayout в GridView
+//TODO Доделать javaDoc и сгенерировать
+//TODO Использовать в xml fragment
 
+/**
+ * Activity with frame data of character
+ * @author Zobkov Dmitry (d@N0n)
+ * @version 2.0
+ */
 public class CharacterFrameDataActivity extends ActionBarActivity {
+    final String DRAWER_IMAGE = "DrawerImage";
+    final String DRAWER_TEXT = "DrawerText";
+
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private String CharName;
+
     private DataBaseHelper Base;
     private TextView Name;
+    private String CharName;
     private String CharId;
 
     @Override
@@ -52,15 +63,14 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent intent = getIntent();
-        String[] charList = intent.getStringArrayExtra("CharList");
+        String[] charList = intent.getStringArrayExtra(CHAR_LIST);
         if(savedInstanceState == null) {
-            CharId = intent.getStringExtra("CharId");
+            CharId = intent.getStringExtra(CHAR_ID);
         }
-        else CharId = savedInstanceState.getString("CharId");
+        else CharId = savedInstanceState.getString(CHAR_ID);
 
         setContentView(R.layout.character_frame_data);
 
-        final String TABLE_LOG = "Fill_log";
         Log.d(TABLE_LOG, "Id: " + CharId);
         Log.d(TABLE_LOG, "ContentView Set");
         Base = new DataBaseHelper(this);
@@ -69,27 +79,28 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-//        mActivityTitle = getTitle().toString();
 
-        Cursor c = Base.getColumn("CharSelectIcons", "Icon");
+        Cursor c = Base.getColumn(KEY_CHAR_SELECT, KEY_ICON);
         String[] charIcons = new String[charList.length];
         int i = 0;
         while(c.moveToNext()){
-            charIcons[i] = c.getString(c.getColumnIndexOrThrow("Icon"))+"_icon";
+            charIcons[i] = c.getString(c.getColumnIndexOrThrow(KEY_ICON))+"_icon";
             i++;
         }
 
         List<HashMap<String,String>> aList = new ArrayList<>();
         for(i=0; i< charList.length; i++){
             HashMap<String, String> hm = new HashMap<>();
-            hm.put("DrawerImage", Integer.toString(getResources().getIdentifier(charIcons[i], "drawable", getPackageName())));
-            hm.put("DrawerText", charList[i]);
+            hm.put(DRAWER_IMAGE, Integer.toString(getResources().getIdentifier(charIcons[i],
+                "drawable", getPackageName())));
+            hm.put(DRAWER_TEXT, charList[i]);
             aList.add(hm);
         }
 
-        String[] from = { "DrawerImage","DrawerText" };
-        int[] to = { R.id.DrawerImage,R.id.DrawerText };
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.drawer_list_item, from, to);
+        String[] from = { DRAWER_IMAGE, DRAWER_TEXT };
+        int[] to = { R.id.DrawerImage, R.id.DrawerText };
+        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(),
+            aList, R.layout.drawer_list_item, from, to);
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         setupDrawer();
@@ -101,8 +112,8 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         c = Base.getCharInfo(CharId);
         Log.d(TABLE_LOG, "CharInfo Filling");
         while (c.moveToNext()) {
-            CharName = c.getString(c.getColumnIndexOrThrow("Char"));
-            CharTableName = c.getString(c.getColumnIndexOrThrow("FDTableName"));
+            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
+            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
         }
 
         Name = (TextView)findViewById(R.id.CharNameLabel);
@@ -111,10 +122,10 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
+//            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(CharId);
             FragmentManager fm = getFragmentManager();
-            fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic).commit();
-            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName);
+//            fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic).commit();
+            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName, CharId);
             fm.beginTransaction().replace(R.id.FDContainer, fragFD).commit();
 
             Log.d(TABLE_LOG, "CharName Set");
@@ -130,6 +141,9 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 //        Debug.stopMethodTracing();
     }
 
+    /**
+     * Setup drawer element
+     */
     private void setupDrawer() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
             R.string.drawer_open, R.string.drawer_close) {
@@ -151,6 +165,9 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    /**
+     * Listener of clicks on drawer elements
+     */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -158,22 +175,26 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * Changing current character frame data to position character
+     * @param position Id of selected character in database
+     */
     private void selectItem(int position) {
         String Id = Integer.toString(position+1);
         FragmentManager fragmentManager = getFragmentManager();
         Cursor c = Base.getCharInfo(Id);
         String CharTableName = null;
         while (c.moveToNext()) {
-            CharName = c.getString(c.getColumnIndexOrThrow("Char"));
-            CharTableName = c.getString(c.getColumnIndexOrThrow("FDTableName"));
+            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
+            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
         }
         Base.close();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
-            fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
+//            CharPicInfoFragment fragment = CharPicInfoFragment.newInstance(Id);
+//            fragmentManager.beginTransaction().replace(R.id.CharPicContainer, fragment).commit();
 
-            FrameDataFragment fragment2 = FrameDataFragment.newInstance(CharTableName);
+            FrameDataFragment fragment2 = FrameDataFragment.newInstance(CharTableName, Id);
             fragmentManager.beginTransaction().replace(R.id.FDContainer, fragment2).commit();
         }
         else {
@@ -200,10 +221,14 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Save information and character id on destroying
+     * @param outState SaveInstanceState bundle
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("CharId", CharId);
+        outState.putString(CHAR_ID, CharId);
     }
 
     @Override

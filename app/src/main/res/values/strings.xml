@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="version" translatable="false">0.8.2</string>
+    <string name="version" translatable="false">0.9.0</string>
     <string name="app_name" translatable="false">Guilty Gear Xrd Frame Data</string>
-    <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v0.8.2</string>
+    <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v0.9.0</string>
     <string name="about_message">\n Project by Zobkov Dmitry aka d@N0n\n
         <a href="http://www.dustloop.com/">Source of frame data information</a>\n
         All images are from the <a href="http://www.ggxrd.com/">official game website</a>\n</string>
@@ -27,7 +27,9 @@
         For more information look these websites:\n
         <a href="http://www.dustloop.com/wiki/index.php?title=Guilty_Gear_Xrd_-SIGN-">Dustloop Wiki</a> (English)\n\n
         <a href="http://wiki.4gamer.net/ggxrd/">Official Wiki</a> (Japanese)\n\n
-        <a href="http://www.fighting.ru/forum/viewtopic.php?f=14&amp;t=8861">Thread on Fighting.ru</a> (Russian)\n</string>
+        <a href="http://www.fighting.ru/forum/viewtopic.php?f=14&amp;t=8861">Thread on Fighting.ru</a> (Russian)\n\n
+        <a href="http://keeponrockin.meteor.com/Matches/">Matches on arcades in Japan</a>\n\n
+        <a href="http://www.dustloop.com/forums/index.php/page/index.html/_/home/zero-frame-whiplash-throws-in-guilty-gear-r469">Throws in Guilty Gear</a> (English)\n</string>
     <string name="close_button">Close</string>
     <string name="app_name_short" translatable="false">GGXrd Frame Data</string>
     <string name="char_select">Character Select</string>

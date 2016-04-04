@@ -5,29 +5,23 @@
               android:layout_height="wrap_content"
               android:layout_gravity="top"
               android:id="@+id/CharPicInfo"
+              android:background="@color/light_row_color"
               android:gravity="center">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/CharPic"
-        android:layout_gravity="left"
-        android:adjustViewBounds="true"
-        android:layout_weight="2"
         android:contentDescription="@string/char_pic"
-        android:maxHeight="600dp"
-        android:scaleType="fitXY"/>
+        android:maxHeight="200dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"/>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="240dp"
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/CharInfo"
-        android:layout_gravity="right"
-        android:dividerHeight="0dp"
-        android:divider="@color/invisible"
-        android:listSelector="@color/invisible"
-        android:nestedScrollingEnabled="false"
-        android:smoothScrollbar="false"
-        android:layout_weight="2"/>
+        android:text="CharInfo"
+        android:layout_weight="1"/>
 
 </LinearLayout>

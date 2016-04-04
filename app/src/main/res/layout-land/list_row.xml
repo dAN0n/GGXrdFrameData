@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/input"
+        android:id="@+id/Input"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/damage"
+        android:id="@+id/Damage"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/tension"
+        android:id="@+id/Tension"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/risc"
+        android:id="@+id/RISC"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/prorate"
+        android:id="@+id/Prorate"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/attacklv"
+        android:id="@+id/Attack"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/guard"
+        android:id="@+id/Guard"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/cancel"
+        android:id="@+id/Cancel"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/rc"
+        android:id="@+id/RC"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/startup"
+        android:id="@+id/Startup"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/active"
+        android:id="@+id/Active"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/recovery"
+        android:id="@+id/Recovery"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/adv"
+        android:id="@+id/Adv"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:text="@string/inv"
+        android:id="@+id/Inv"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:gravity="center_horizontal"
+        android:background="@drawable/cell_border"/>
+
+</LinearLayout>
