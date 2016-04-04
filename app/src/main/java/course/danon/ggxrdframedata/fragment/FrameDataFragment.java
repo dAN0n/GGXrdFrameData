@@ -40,17 +40,16 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
             View test = inflater.inflate(R.layout.char_pic_container, null, false);
+
             frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
+
             String charId = getArguments().getString(CHARID);
             charPic = test.findViewById(R.id.CharPicParentContainer);
-
             CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(charId);
             FragmentManager fm = getChildFragmentManager();
             if (savedInstanceState == null) fm.beginTransaction()
                     .replace(R.id.CharPicContainer, fragCharPic, "charPic").commit();
-//            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT &
-//                    fragCharPic.isDetached()) fm.beginTransaction().attach(fragCharPic).commit();
 
             Bundle bundle = new Bundle();
 //            Debug.startMethodTracing("FDOnActivityCreated");
