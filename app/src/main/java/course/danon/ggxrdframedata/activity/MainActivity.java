@@ -77,6 +77,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        String title = String.format(getResources().getString(R.string.about_title),
+                getResources().getString(R.string.version));
 
         if (id == R.id.action_settings) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -84,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
             message.setText(R.string.about_message);
             message.setMovementMethod(LinkMovementMethod.getInstance());
             message.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-            builder.setTitle(R.string.about_title)
+            builder.setTitle(title)
                 .setView(message)
                 .setCancelable(false)
                 .setNegativeButton(R.string.close_button,
