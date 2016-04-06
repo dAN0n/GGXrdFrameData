@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,7 @@ public class CharPicInfoFragment extends Fragment {
             text.setText(aCharInfo);
             text.setTextColor(getResources().getColor(R.color.black));
             text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            text.setGravity(Gravity.CENTER);
             infoList.addView(text);
         }
 

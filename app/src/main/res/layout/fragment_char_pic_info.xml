@@ -14,8 +14,7 @@
         android:id="@+id/CharPic"
         android:contentDescription="@string/char_pic"
         android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp" />
+        android:adjustViewBounds="true"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"

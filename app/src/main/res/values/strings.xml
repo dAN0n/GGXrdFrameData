@@ -67,6 +67,6 @@
     <string name="backdash_inv">Backdash Invincibility:</string>
     <string name="ik_activation">IK Activation:</string>
     <string name="faceup">Face-Up Wakeup:</string>
-    <string name="facedown">Face-Down Wakeup:</string>
+    <string name="facedown">Face-Down:</string>
 
 </resources>
