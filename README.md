@@ -1,4 +1,4 @@
-## Guilty Gear Xrd Frame Data
+## Guilty Gear Xrd Frame Data <img src="https://monosnap.com/file/zUWZCRTcIHAoT3AH8ARHsFosCQ00Yp.png" height="40">
 This application is a portable frame data for the game 'Guilty Gear Xrd' from [Dustloop Wiki](http://www.dustloop.com/wiki/index.php?title=Guilty_Gear_Xrd_-SIGN-).<p>
 For more understanding what it is read [this article](http://www.dustloop.com/wiki/index.php?title=Using_Frame_Data) for example.<p>
 To run the application, you will need to have Android OS version 4.1 or above.<p>
