@@ -54,4 +54,11 @@
     <string name="jump">Стартап прыжка:</string>
     <string name="stun">Стойкость к оглушению:</string>
     <string name="guts">Уровень Guts:</string>
+    <string name="facedown">Вставание лицом вниз:</string>
+    <string name="light">Легкий</string>
+    <string name="medium">Средний</string>
+    <string name="super_heavy">Очень тяжелый</string>
+    <string name="weight">Вес:</string>
+    <string name="heavy">Тяжелый</string>
+    <string name="faceup">Вставание лицом вверх:</string>
 </resources>

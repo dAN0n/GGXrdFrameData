@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="version" translatable="false">0.9.1</string>
+    <string name="version" translatable="false">0.9.4</string>
     <string name="app_name" translatable="false">Guilty Gear Xrd Frame Data</string>
     <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v%1$s</string>
     <string name="about_message">\n Project by Zobkov Dmitry aka d@N0n\n
@@ -54,6 +54,11 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
     <string name="char_pic">CharPic</string>
+    <string name="weight">Weight:</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="super_heavy">Super Heavy</string>
     <string name="defense_mod">Defense Modifier:</string>
     <string name="guts">Guts Rating:</string>
     <string name="stun">Stun Resistance:</string>
@@ -61,5 +66,7 @@
     <string name="backdash_time">Backdash Time:</string>
     <string name="backdash_inv">Backdash Invincibility:</string>
     <string name="ik_activation">IK Activation:</string>
+    <string name="faceup">Face-Up Wakeup:</string>
+    <string name="facedown">Face-Down Wakeup:</string>
 
 </resources>

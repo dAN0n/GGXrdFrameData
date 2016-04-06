@@ -13,16 +13,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/CharPic"
         android:contentDescription="@string/char_pic"
-        android:maxHeight="200dp"
         android:layout_weight="1"
-        android:adjustViewBounds="true"/>
-
-    <TextView
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp" />
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CharInfo"
-        android:text="CharInfo"
-        android:textColor="@color/black"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:id="@+id/CharInfoLinear"/>
 
 </LinearLayout>

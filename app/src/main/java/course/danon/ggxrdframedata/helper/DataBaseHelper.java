@@ -138,13 +138,16 @@ public class DataBaseHelper extends SQLiteAssetHelper {
             KEY_CHAR,
             KEY_TABLENAME,
             KEY_ICON,
+            KEY_WEIGHT,
             KEY_DEFENSE_MODIF,
             KEY_GUTS_RATING,
             KEY_STUN_RESIST,
             KEY_JUMP_STARTUP,
             KEY_BACKDASH_TIME,
             KEY_BACKDASH_INV,
-            KEY_IK_ACTIVATION};
+            KEY_IK_ACTIVATION,
+            KEY_FACEUP,
+            KEY_FACEDOWN};
         return db.query(KEY_CHAR_SELECT, Selection, KEY_WHERE_ID_QUESTION, new String[]{id},
             null, null, null);
     }

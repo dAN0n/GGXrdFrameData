@@ -34,8 +34,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         setTitle(R.string.app_name);
 
-        final Intent intent = new Intent(this, CharacterFrameDataActivity.class);
+        ListView ListView = (ListView) findViewById(R.id.listView);
         DataBaseHelper Base = new DataBaseHelper(this);
+        final Intent intent = new Intent(this, CharacterFrameDataActivity.class);
+
         int CharCount = Base.getRowCount(KEY_CHAR_SELECT);
         String msg = String.valueOf(CharCount);
         Log.d(TABLE_LOG, "Char count: " + msg);
@@ -49,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
         }
         Base.close();
 
-        ListView ListView = (ListView)findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
             R.layout.main_activity_list_view_item, Char);
         ListView.setAdapter(adapter);
@@ -77,28 +78,53 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        String title = String.format(getResources().getString(R.string.about_title),
-                getResources().getString(R.string.version));
 
         if (id == R.id.action_settings) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            final TextView message = new TextView(this);
-            message.setText(R.string.about_message);
-            message.setMovementMethod(LinkMovementMethod.getInstance());
-            message.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-            builder.setTitle(title)
-                .setView(message)
-                .setCancelable(false)
-                .setNegativeButton(R.string.close_button,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
+
+            createMessage(builder);
+
             AlertDialog alert = builder.create();
             alert.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Create message with information about application
+     * @param builder Builder for alert dialog
+     */
+    private void createMessage(AlertDialog.Builder builder) {
+        final TextView message = new TextView(this);
+        String title = String.format(getResources().getString(R.string.about_title),
+                getResources().getString(R.string.version));
+
+        int px = getPx(10);
+
+        message.setText(R.string.about_message);
+        message.setMovementMethod(LinkMovementMethod.getInstance());
+        message.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        message.setTextColor(getResources().getColor(R.color.black));
+        message.setPadding(px, 0, px, 0);
+        builder.setTitle(title)
+            .setView(message)
+            .setCancelable(false)
+            .setNegativeButton(R.string.close_button,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+    }
+
+    /**
+     * dp to px conversion
+     * @param dp value in dp
+     * @return value in px
+     */
+    private int getPx(int dp) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 }

@@ -39,6 +39,7 @@ public final class DataBaseParams {
     public static final String KEY_ATTACK = "Attack",
         KEY_ADV = "Adv",
         KEY_INV = "Inv",
+        KEY_WEIGHT = "Weight",
         KEY_DEFENSE = "Defense Modifier",
         KEY_GUTS = "Guts Rating",
         KEY_STUN = "Stun Resistance",
@@ -46,6 +47,8 @@ public final class DataBaseParams {
         KEY_BD_TIME = "Backdash Time",
         KEY_BD_INV = "Backdash Invincibility",
         KEY_IK = "IK Activation",
+        KEY_FACEUP = "FaceUp",
+        KEY_FACEDOWN = "FaceDown",
         TABLE_LOG = "Fill_log",
         CHAR_LIST = "CharList",
         CHAR_ID = "CharId";

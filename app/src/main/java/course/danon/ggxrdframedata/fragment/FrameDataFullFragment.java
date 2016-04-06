@@ -35,46 +35,57 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
         if(container == null) return null;
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
+
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
             frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
-            Bundle bundle = new Bundle();
-//            Debug.startMethodTracing("FDOnActivityCreated");
             Log.d(TABLE_LOG, "FDOnCreateView");
-            DataBaseHelper Base = new DataBaseHelper(getActivity());
-            String tableName = getArguments().getString(TABLE_NAME);
-            Cursor c = Base.getLandscapeTable(tableName);
-            int rowCount = Base.getRowCount(tableName);
-            int columnCount = c.getColumnCount()-2;
-            String[][] frameTable = new String[columnCount][rowCount];
-            int column = 0;
-            int row = 0;
 
-            while (c.moveToNext()) {
-                frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_DAMAGE));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_TENSION));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RISC));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_PRORATE));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ATTACK));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_CANCEL));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RC));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ACTIVE));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RECOVERY));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INV));
-                column = 0;
-                row++;
-            }
-            bundle.putSerializable(KEY_ID, frameTable);
-            getLoaderManager().initLoader(0, bundle, this);
-            Base.close();
+            getInfoFromDatabase();
 
             Log.d(TABLE_LOG, "FDOnCreateView End");
-//        Debug.stopMethodTracing();
             return frameDataView;
         }
+    }
+
+    /**
+     * This method collect information of character from database
+     */
+    private void getInfoFromDatabase() {
+        String tableName = getArguments().getString(TABLE_NAME);
+
+        DataBaseHelper Base = new DataBaseHelper(getActivity());
+        Cursor c = Base.getLandscapeTable(tableName);
+        int rowCount = Base.getRowCount(tableName);
+        int columnCount = c.getColumnCount()-2;
+        String[][] frameTable = new String[columnCount][rowCount];
+
+        int column = 0;
+        int row = 0;
+
+        while (c.moveToNext()) {
+            frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_DAMAGE));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_TENSION));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RISC));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_PRORATE));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ATTACK));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_CANCEL));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RC));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ACTIVE));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_RECOVERY));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INV));
+            column = 0;
+            row++;
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_ID, frameTable);
+
+        getLoaderManager().initLoader(0, bundle, this);
+        Base.close();
     }
 
     @Override
@@ -88,7 +99,7 @@ public class FrameDataFullFragment extends Fragment implements LoaderManager.Loa
     /**
      * This method puts name of character frame data table in fragment
      * @param TableName Name of character frame data table in database
-     * @return fragment with bundle
+     * @return fragment Fragment with bundle
      */
     public static FrameDataFullFragment newInstance(String TableName){
         FrameDataFullFragment fragment = new FrameDataFullFragment();

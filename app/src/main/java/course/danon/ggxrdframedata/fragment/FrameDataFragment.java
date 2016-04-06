@@ -24,7 +24,7 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 /**
  * Fragment with lite frame data table
  * @author Zobkov Dmitry (d@N0n)
- * @version 2.0
+ * @version 3.0
  */
 public class FrameDataFragment extends Fragment implements LoaderManager.LoaderCallbacks<TableSimpleAdapter>{
     private final static String TABLE_NAME = "TableName";
@@ -39,51 +39,68 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
         if(container == null) return null;
         else {
             View frameDataView = inflater.inflate(R.layout.fragment_frame_data_list_view, container, false);
-            View test = inflater.inflate(R.layout.char_pic_container, null, false);
 
             frameData = (ListView) frameDataView.findViewById(R.id.frameDataList);
             pb = (ProgressBar) frameDataView.findViewById(R.id.progressBar);
-
-            String charId = getArguments().getString(CHARID);
-            charPic = test.findViewById(R.id.CharPicParentContainer);
-            CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(charId);
-            FragmentManager fm = getChildFragmentManager();
-            if (savedInstanceState == null) fm.beginTransaction()
-                    .replace(R.id.CharPicContainer, fragCharPic, "charPic").commit();
-
-            Bundle bundle = new Bundle();
-//            Debug.startMethodTracing("FDOnActivityCreated");
             Log.d(TABLE_LOG, "FDOnCreateView");
-            DataBaseHelper Base = new DataBaseHelper(getActivity());
-            String tableName = getArguments().getString(TABLE_NAME);
-            Cursor c = Base.getPortraitTable(tableName);
-            int rowCount = Base.getRowCount(tableName)+1;
-            int columnCount = c.getColumnCount()-2;
-            String[][] frameTable = new String[columnCount][rowCount];
-            int column = 0;
-            int row = 0;
-            frameTable[column][row] = getResources().getString(R.string.input);
-            frameTable[++column][row] = getResources().getString(R.string.guard);
-            frameTable[++column][row] = getResources().getString(R.string.startup);
-            frameTable[++column][row] = getResources().getString(R.string.advantage);
-            column = 0;
 
-            while (c.moveToNext()) {
-                row++;
-                frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
-                frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
-                column = 0;
-            }
-            bundle.putSerializable(KEY_ID, frameTable);
-            getLoaderManager().initLoader(0, bundle, this);
-            Base.close();
+            initCharPicInfoFragment(inflater);
+            getInfoFromDatabase();
 
             Log.d(TABLE_LOG, "FDOnCreateView End");
-//        Debug.stopMethodTracing();
             return frameDataView;
         }
+    }
+
+    /**
+     * Create CharPicInfoFragment and put it to FrameLayout container
+     * @param inflater Inflater from parent fragment
+     */
+    private void initCharPicInfoFragment(LayoutInflater inflater) {
+        String charId = getArguments().getString(CHARID);
+
+        View test = inflater.inflate(R.layout.char_pic_container, null, false);
+        charPic = test.findViewById(R.id.CharPicParentContainer);
+
+        CharPicInfoFragment fragCharPic = CharPicInfoFragment.newInstance(charId);
+        FragmentManager fm = getChildFragmentManager();
+        fm.beginTransaction().replace(R.id.CharPicContainer, fragCharPic, "charPic").commit();
+    }
+
+    /**
+     * This method collect information of character from database
+     */
+    private void getInfoFromDatabase() {
+        String tableName = getArguments().getString(TABLE_NAME);
+
+        DataBaseHelper Base = new DataBaseHelper(getActivity());
+        Cursor c = Base.getPortraitTable(tableName);
+        int rowCount = Base.getRowCount(tableName)+1;
+        int columnCount = c.getColumnCount()-2;
+        String[][] frameTable = new String[columnCount][rowCount];
+
+        int column = 0;
+        int row = 0;
+        frameTable[column][row] = getResources().getString(R.string.input);
+        frameTable[++column][row] = getResources().getString(R.string.guard);
+        frameTable[++column][row] = getResources().getString(R.string.startup);
+        frameTable[++column][row] = getResources().getString(R.string.advantage);
+        column = 0;
+
+        while (c.moveToNext()) {
+            row++;
+            frameTable[column][row] = c.getString(c.getColumnIndexOrThrow(KEY_INPUT));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_GUARD));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_STARTUP));
+            frameTable[++column][row] = c.getString(c.getColumnIndexOrThrow(KEY_ADV));
+            column = 0;
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_ID, frameTable);
+
+        getLoaderManager().initLoader(0, bundle, this);
+        Base.close();
     }
 
     @Override
@@ -102,7 +119,7 @@ public class FrameDataFragment extends Fragment implements LoaderManager.LoaderC
     /**
      * This method puts name of character frame data table in fragment
      * @param TableName Name of character frame data table in database
-     * @return fragment with bundle
+     * @return fragment Fragment with bundle
      */
     public static FrameDataFragment newInstance(String TableName, String CharId){
         FrameDataFragment fragment = new FrameDataFragment();
