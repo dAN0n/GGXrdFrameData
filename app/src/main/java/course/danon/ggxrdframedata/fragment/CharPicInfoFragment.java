@@ -4,10 +4,12 @@ import android.support.v4.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import course.danon.ggxrdframedata.helper.DataBaseHelper;
@@ -21,9 +23,10 @@ import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
  * @version 2.0
  */
 public class CharPicInfoFragment extends Fragment {
-    private final static String ID = "ID";
 
+    private final static String ID = "ID";
     private String CharPic;
+    private String[] charInfo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,41 +34,76 @@ public class CharPicInfoFragment extends Fragment {
         else {
             View CharPicInfoView = inflater.inflate(R.layout.fragment_char_pic_info, container, false);
 
-            TextView infoList = (TextView) CharPicInfoView.findViewById(R.id.CharInfo);
-            ImageView charIcon = (ImageView) CharPicInfoView.findViewById(R.id.CharPic);
-
             final String TABLE_LOG = "Fill_log";
             Log.d(TABLE_LOG, "CharPicOnCreateView");
-//        Debug.startMethodTracing("CharPicOnActivityCreated");
-            DataBaseHelper Base = new DataBaseHelper(getActivity());
-            String[] charInfo = new String[7];
+
             String CharId = this.getArguments().getString(ID);
-            Cursor c = Base.getCharInfo(CharId);
-            while (c.moveToNext()) {
-                charInfo[0] = getString(R.string.defense_mod) + " " + c.getString(c.getColumnIndexOrThrow(KEY_DEFENSE));
-                charInfo[1] = getString(R.string.guts) + " " + c.getString(c.getColumnIndexOrThrow(KEY_GUTS));
-                charInfo[2] = getString(R.string.stun) + " " + c.getString(c.getColumnIndexOrThrow(KEY_STUN));
-                charInfo[3] = getString(R.string.jump) + " " + c.getString(c.getColumnIndexOrThrow(KEY_JUMP));
-                charInfo[4] = getString(R.string.backdash_time) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_TIME));
-                charInfo[5] = getString(R.string.backdash_inv) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_INV));
-                charInfo[6] = getString(R.string.ik_activation) + " " + c.getString(c.getColumnIndexOrThrow(KEY_IK));
-                CharPic = c.getString(c.getColumnIndexOrThrow("Icon"));
-            }
-            Base.close();
+            getInfoFromDatabase(CharId);
+            setInfoToView(CharPicInfoView);
 
-            String charInfoSet = "";
-            for(int i = 0; i < 7; i++){
-                charInfoSet += charInfo[i] + "\n";
-            }
-            infoList.setText(charInfoSet);
-
-            charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable",
-                getActivity().getPackageName()));
             Log.d(TABLE_LOG, "CharPicOnCreateView End");
-//        Debug.stopMethodTracing();
 
             return CharPicInfoView;
         }
+    }
+
+    /**
+     * This method collect information of character from database
+     * @param charId Id of character in database
+     */
+    private void getInfoFromDatabase(String charId) {
+        DataBaseHelper Base = new DataBaseHelper(getActivity());
+        charInfo = new String[10];
+        Cursor c = Base.getCharInfo(charId);
+        while (c.moveToNext()) {
+            String weight = c.getString(c.getColumnIndexOrThrow(KEY_WEIGHT));
+            switch (weight) {
+                case "L":
+                    weight = getString(R.string.light);
+                    break;
+                case "M":
+                    weight = getString(R.string.medium);
+                    break;
+                case "H":
+                    weight = getString(R.string.heavy);
+                    break;
+                default:
+                    weight = getString(R.string.super_heavy);
+                    break;
+            }
+            charInfo[0] = getString(R.string.weight) + " " + weight;
+            charInfo[1] = getString(R.string.defense_mod) + " " + c.getString(c.getColumnIndexOrThrow(KEY_DEFENSE));
+            charInfo[2] = getString(R.string.guts) + " " + c.getString(c.getColumnIndexOrThrow(KEY_GUTS));
+            charInfo[3] = getString(R.string.stun) + " " + c.getString(c.getColumnIndexOrThrow(KEY_STUN));
+            charInfo[4] = getString(R.string.jump) + " " + c.getString(c.getColumnIndexOrThrow(KEY_JUMP));
+            charInfo[5] = getString(R.string.backdash_time) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_TIME));
+            charInfo[6] = getString(R.string.backdash_inv) + " " + c.getString(c.getColumnIndexOrThrow(KEY_BD_INV));
+            charInfo[7] = getString(R.string.ik_activation) + " " + c.getString(c.getColumnIndexOrThrow(KEY_IK));
+            charInfo[8] = getString(R.string.faceup) + " " + c.getString(c.getColumnIndexOrThrow(KEY_FACEUP)) + "F";
+            charInfo[9] = getString(R.string.facedown) + " " + c.getString(c.getColumnIndexOrThrow(KEY_FACEDOWN)) + "F";
+            CharPic = c.getString(c.getColumnIndexOrThrow("Icon"));
+        }
+        Base.close();
+    }
+
+    /**
+     * Set information about character to views
+     * @param charPicInfoView Base layout with LinearLayout and ImageView
+     */
+    private void setInfoToView(View charPicInfoView) {
+        LinearLayout infoList = (LinearLayout) charPicInfoView.findViewById(R.id.CharInfoLinear);
+        ImageView charIcon = (ImageView) charPicInfoView.findViewById(R.id.CharPic);
+
+        for (String aCharInfo : charInfo) {
+            TextView text = new TextView(getActivity().getBaseContext());
+            text.setText(aCharInfo);
+            text.setTextColor(getResources().getColor(R.color.black));
+            text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            infoList.addView(text);
+        }
+
+        charIcon.setImageResource(getResources().getIdentifier(CharPic, "drawable",
+                getActivity().getPackageName()));
     }
 
     /**

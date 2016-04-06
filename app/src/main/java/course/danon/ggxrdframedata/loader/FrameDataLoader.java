@@ -59,6 +59,9 @@ public class FrameDataLoader extends AsyncTaskLoader<TableSimpleAdapter> {
         super.deliverResult(data);
     }
 
+    /**
+     * Create adapter with framedata for portrait orientation
+     */
     private void liteFrameDataRow(){
         aList = new ArrayList<>();
         for(int i=0; i< mData[0].length; i++){
@@ -76,6 +79,9 @@ public class FrameDataLoader extends AsyncTaskLoader<TableSimpleAdapter> {
         mAdapter = new TableSimpleAdapter(mContext, aList, R.layout.list_row, from, to);
     }
 
+    /**
+     * Create adapter with framedata for landscape orientation
+     */
     private void fullFrameDataRow(){
         aList = new ArrayList<>();
         for(int i=0; i< mData[0].length; i++){

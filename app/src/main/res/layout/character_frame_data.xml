@@ -18,7 +18,8 @@
             android:paddingRight="@dimen/activity_table_horizontal_margin"
             android:paddingTop="@dimen/activity_table_vertical_margin"
             android:paddingBottom="@dimen/activity_table_vertical_margin"
-            tools:context="course.danon.ggxrdframedata.activity.CharacterFrameDataActivity">
+            tools:context="course.danon.ggxrdframedata.activity.CharacterFrameDataActivity"
+            android:background="@color/light_row_color">
             <TextView
                 android:text="@string/hello_world"
                 android:layout_width="match_parent"

@@ -34,11 +34,10 @@ import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
 //TODO Доделать javaDoc и сгенерировать
-//TODO Почистить мусор
 //TODO Объединить фрагменты с таблицами в один
-//TODO Переделать TextView во фрагменте с картинкой
-//TODO Разные размеры картинки и текста для разных устройств (+чёрный текст)
 //TODO Обновить фреймдату и добавить фреймдату к другим играм
+//TODO Сделать картинки одинаковыми по высоте и улучшить качество иконок
+//TODO Добавить доступ через View
 
 /**
  * Activity with frame data of character
@@ -60,7 +59,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        Debug.startMethodTracing("CharOnCreate");
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -76,9 +74,57 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
 
         Log.d(TABLE_LOG, "Id: " + CharId);
         Log.d(TABLE_LOG, "ContentView Set");
+
         Base = new DataBaseHelper(this);
 
         Log.d(TABLE_LOG, "DrawerListFillng");
+        setDrawer(charList);
+        Log.d(TABLE_LOG, "DrawerListFilling End");
+
+        createFragment();
+    }
+
+    /**
+     * Create fragment with framedata and set character name on top
+     */
+    private void createFragment() {
+        CharName = null;
+        String CharTableName = null;
+        Log.d(TABLE_LOG, "CharInfo Get Start");
+        Cursor c = Base.getCharInfo(CharId);
+        Log.d(TABLE_LOG, "CharInfo Filling");
+        while (c.moveToNext()) {
+            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
+            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
+        }
+
+        Name = (TextView)findViewById(R.id.CharNameLabel);
+        Name.setText(CharName);
+        setTitle(CharName);
+        Base.close();
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            FragmentManager fm = getSupportFragmentManager();
+            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName, CharId);
+            fm.beginTransaction().replace(R.id.FDContainer, fragFD).commit();
+
+            Log.d(TABLE_LOG, "CharName Set");
+        }
+
+        else {
+            FrameDataFullFragment fragFDFull = FrameDataFullFragment.newInstance(CharTableName);
+            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+            fm.replace(R.id.FDFullContainer, fragFDFull).commit();
+
+            Log.d(TABLE_LOG, "CharName Set Land");
+        }
+    }
+
+    /**
+     * Creates and stylize drawer
+     * @param charList List of characters
+     */
+    private void setDrawer(String[] charList) {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -107,39 +153,6 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         setupDrawer();
-        Log.d(TABLE_LOG, "DrawerListFilling End");
-
-        CharName = null;
-        String CharTableName = null;
-        Log.d(TABLE_LOG, "CharInfo Get Start");
-        c = Base.getCharInfo(CharId);
-        Log.d(TABLE_LOG, "CharInfo Filling");
-        while (c.moveToNext()) {
-            CharName = c.getString(c.getColumnIndexOrThrow(KEY_CHAR));
-            CharTableName = c.getString(c.getColumnIndexOrThrow(KEY_TABLENAME));
-        }
-
-        Name = (TextView)findViewById(R.id.CharNameLabel);
-        Name.setText(CharName);
-        setTitle(CharName);
-        Base.close();
-
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            FragmentManager fm = getSupportFragmentManager();
-            FrameDataFragment fragFD = FrameDataFragment.newInstance(CharTableName, CharId);
-            fm.beginTransaction().replace(R.id.FDContainer, fragFD).commit();
-
-            Log.d(TABLE_LOG, "CharName Set");
-        }
-
-        else {
-            FrameDataFullFragment fragFDFull = FrameDataFullFragment.newInstance(CharTableName);
-            FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
-            fm.replace(R.id.FDFullContainer, fragFDFull).commit();
-
-            Log.d(TABLE_LOG, "CharName Set Land");
-        }
-//        Debug.stopMethodTracing();
     }
 
     /**
@@ -245,9 +258,14 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             final TextView message = new TextView(this);
+
+            int px = getPx(10);
+
             message.setText(R.string.help_message);
             message.setMovementMethod(LinkMovementMethod.getInstance());
             message.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            message.setTextColor(getResources().getColor(R.color.black));
+            message.setPadding(px, 0, px, 0);
             builder.setTitle(R.string.help_title)
                 .setView(message)
                 .setCancelable(false)
@@ -263,6 +281,16 @@ public class CharacterFrameDataActivity extends ActionBarActivity {
         }
 
         return mDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * dp to px conversion
+     * @param dp value in dp
+     * @return value in px
+     */
+    private int getPx(int dp) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 
 }
