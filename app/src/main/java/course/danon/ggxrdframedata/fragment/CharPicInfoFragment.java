@@ -109,7 +109,7 @@ public class CharPicInfoFragment extends Fragment {
     /**
      * This method puts id of character in fragment
      * @param CharId Id of character in database
-     * @return fragment with bundle
+     * @return fragment Fragment with bundle
      */
     public static CharPicInfoFragment newInstance(String CharId){
         CharPicInfoFragment fragment = new CharPicInfoFragment();

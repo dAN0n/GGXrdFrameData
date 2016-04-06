@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="version" translatable="false">0.9.3</string>
+    <string name="version" translatable="false">0.9.4</string>
     <string name="app_name" translatable="false">Guilty Gear Xrd Frame Data</string>
     <string name="about_title" translatable="false">Guilty Gear Xrd Frame Data v%1$s</string>
     <string name="about_message">\n Project by Zobkov Dmitry aka d@N0n\n

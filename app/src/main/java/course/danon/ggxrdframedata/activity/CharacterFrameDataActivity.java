@@ -33,10 +33,8 @@ import course.danon.ggxrdframedata.fragment.FrameDataFullFragment;
 import course.danon.ggxrdframedata.R;
 import static course.danon.ggxrdframedata.helper.DataBaseParams.*;
 
-//TODO Доделать javaDoc и сгенерировать
 //TODO Объединить фрагменты с таблицами в один
 //TODO Обновить фреймдату и добавить фреймдату к другим играм
-//TODO Сделать картинки одинаковыми по высоте и улучшить качество иконок
 //TODO Добавить доступ через View
 
 /**
